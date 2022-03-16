@@ -1,35 +1,32 @@
-// utility functions
+// utils
 import AppError from "../../../lib/appError";
 import dbConnect from "../../../lib/dbConnect";
 
 // models
-import Admin from "../../../models/AdminModel";
+import Admin from "../../../models/adminModel";
 
-// middleware
+// middlewares
 import catchAsync from "../../../middlewares/catchAsync";
 import globalErrorHandler from "../../../middlewares/errorMd";
 
 async function handler(req, res) {
   await dbConnect();
+
   const { method } = req;
+  const { id } = req.query;
 
   if (method === "GET") {
-    const admins = await Admin.find();
-    return res.status(200).json({
-      status: "success",
-      data: admins,
-    });
-  } else if (method === "POST") {
-    const newAdmin = await Admin.create(req.body);
+    const admin = await Admin.findById(id);
     res.status(200).json({
       status: "success",
-      message: newAdmin,
+      body: admin,
     });
   } else {
-    const err = new AppError(`No route for ${req.url} found`, 404);
+    // create an error from the custom error middleware
+    const err = new AppError(`No routes for ${req.url} found`);
+    // pass the error the global error handling middleware
     globalErrorHandler(err, req, res);
   }
 }
 
-// wrapping function with catchAsync to handle errors
 export default catchAsync(handler);
