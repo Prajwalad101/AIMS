@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import Dashboard from "../components/Dashboard";
+
 import Sidebar from "../components/Sidebar/Sidebar";
 
 export default function Home() {
@@ -10,7 +10,6 @@ export default function Home() {
   return (
     <div className="flex">
       <Sidebar />
-      {/* <Dashboard /> */}
     </div>
   );
 }

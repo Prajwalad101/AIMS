@@ -1,4 +1,4 @@
-import globalErrorHandler from "../middlewares/errorMd";
+import globalErrorHandler from "./errorMd";
 
 function catchAsync(handler) {
   return async (req, res) => {
