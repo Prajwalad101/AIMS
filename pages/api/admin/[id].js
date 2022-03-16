@@ -16,15 +16,14 @@ async function handler(req, res) {
   const { id } = req.query;
 
   if (method === "GET") {
-    const admin = await Admin.findById(id);
-    res.status(200).json({
+    const admin = await Admin.find({ email: id });
+
+    return res.status(200).json({
       status: "success",
       body: admin,
     });
   } else {
-    // create an error from the custom error middleware
     const err = new AppError(`No routes for ${req.url} found`);
-    // pass the error the global error handling middleware
     globalErrorHandler(err, req, res);
   }
 }

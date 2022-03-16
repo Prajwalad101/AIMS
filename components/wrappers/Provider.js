@@ -1,7 +1,20 @@
+import { QueryClient, QueryClientProvider } from "react-query";
 import { SessionProvider } from "next-auth/react";
 
 function Provider({ children, session }) {
-  return <SessionProvider session={session}>{children}</SessionProvider>;
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
+
+  return (
+    <SessionProvider session={session}>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </SessionProvider>
+  );
 }
 
 export default Provider;
