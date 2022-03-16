@@ -10,9 +10,10 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: [true, "An admin must have an email"],
     trim: true,
+    unique: true,
   },
 });
 
-const Admin = mongoose.model("Admin", adminSchema);
+const Admin = mongoose.models.Admin || mongoose.model("Admin", adminSchema);
 
 export default Admin;
