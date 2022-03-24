@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { getDistricts } from "../utils/formData";
 
-export default function PersonalInfo() {
+import useValidateUser from "../hooks/users/useValidateUser";
+
+export default function PersonalInfo({ user, userSession }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [familyMembers, setFamilyMembers] = useState("");
@@ -14,8 +16,27 @@ export default function PersonalInfo() {
 
   const [district, setDistrict] = useState(districts[0]);
 
+  const mutation = useValidateUser();
+  const email = userSession.current.email;
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const userInfo = {
+      firstName,
+      lastName,
+      email,
+      district,
+      familyMembers,
+      municipality,
+      provinceNo,
+      tole,
+    };
+    mutation.mutate(userInfo, {
+      onSuccess: () => {
+        console.log("Mutation successful");
+      },
+    });
   };
 
   return (
@@ -68,7 +89,7 @@ export default function PersonalInfo() {
                     <input
                       type="text"
                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md cursor-not-allowed text-gray-600"
-                      value={"prajwalad101@gmail.com"}
+                      value={email}
                       disabled
                     />
                   </div>
@@ -114,7 +135,7 @@ export default function PersonalInfo() {
                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       required
                       minLength={3}
-                      maxLength={15}
+                      maxLength={30}
                     />
                   </div>
 

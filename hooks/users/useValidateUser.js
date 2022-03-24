@@ -25,6 +25,8 @@ function useValidateUser() {
       },
     }
   );
+
+  return mutation;
 }
 
 export default useValidateUser;
