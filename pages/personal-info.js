@@ -23,7 +23,7 @@ export default function PersonalInfo() {
       <div>
         <div className="flex flex-col">
           <div className="mb-5">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-xl font-semibold leading-6 text-gray-900">
               Add personal information for verification
             </h3>
           </div>
@@ -108,6 +108,7 @@ export default function PersonalInfo() {
                     </label>
                     <input
                       type="text"
+                      placeholder="eg: Budhanilkantha-10"
                       value={municipality}
                       onChange={(e) => setMunicipality(e.target.value)}
                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -123,6 +124,7 @@ export default function PersonalInfo() {
                     </label>
                     <input
                       type="number"
+                      placeholder="eg: 1"
                       value={provinceNo}
                       onChange={(e) => setProvinceNo(e.target.value)}
                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -144,10 +146,10 @@ export default function PersonalInfo() {
                     />
                   </div>
                 </div>
-                <div className="pt-7 text-left ">
+                <div className="mt-7 ml-2 mb-2 text-left ">
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Save
                   </button>
