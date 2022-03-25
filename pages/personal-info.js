@@ -1,27 +1,43 @@
+// hooks
 import { useState } from "react";
+import { useRouter } from "next/router";
+import useValidateUser from "../hooks/users/useValidateUser";
+import useUser from "../hooks/users/useUser";
 
 import { getDistricts } from "../utils/formData";
 
-import useValidateUser from "../hooks/users/useValidateUser";
+export default function PersonalInfo({ userSession }) {
+  const router = useRouter();
+  const id = userSession.current.id;
+  const email = userSession.current.email;
 
-export default function PersonalInfo({ user, userSession }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [familyMembers, setFamilyMembers] = useState("");
   const [municipality, setMunicipality] = useState("");
   const [provinceNo, setProvinceNo] = useState("1");
   const [tole, setTole] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const districts = getDistricts(provinceNo);
 
   const [district, setDistrict] = useState(districts[0]);
 
   const mutation = useValidateUser();
-  const id = userSession.current.id;
-  const email = userSession.current.email;
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // TODO: ** UNCOMMENTED ONLY FOR TESTING **
+
+    // if (verifyStatus !== "not-verified" ) {
+    //   console.log("Cannot submit form");
+    //   return;
+    // } else if (isButtonDisabled) {
+    //   console.log("Already submitted");
+    //   return;
+    // }
+    setIsButtonDisabled(true);
 
     const userInfo = {
       firstName,
@@ -31,14 +47,26 @@ export default function PersonalInfo({ user, userSession }) {
       municipality,
       provinceNo,
       tole,
-      id,
+      isVerified: "pending",
     };
-    mutation.mutate(userInfo, {
-      onSuccess: () => {
-        console.log("Mutation successful");
-      },
-    });
+    mutation.mutate(
+      { userInfo, id },
+      {
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+      }
+    );
   };
+
+  const { isLoading, isError, error, data } = useUser(id);
+  const verifyStatus = data?.data.isVerified;
+
+  if (isLoading) {
+    return <div>Loading user info...</div>;
+  } else if (isError) {
+    return <div>An unexpected error occurred: {error}</div>;
+  }
 
   return (
     <>
@@ -172,6 +200,7 @@ export default function PersonalInfo({ user, userSession }) {
                   <button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    disabled={isButtonDisabled}
                   >
                     Save
                   </button>

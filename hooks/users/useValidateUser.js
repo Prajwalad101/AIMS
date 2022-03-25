@@ -5,13 +5,13 @@ function useValidateUser() {
 
   // create a mutation
   const mutation = useMutation(
-    async (userDetails) => {
-      const res = await fetch("/api/verify-user", {
+    async ({ userInfo, id }) => {
+      const res = await fetch(`/api/user/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userDetails),
+        body: JSON.stringify(userInfo),
       });
 
       if (!res.ok) {
