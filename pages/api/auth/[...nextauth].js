@@ -24,4 +24,10 @@ export default NextAuth({
   theme: {
     colorScheme: "light",
   },
+  callbacks: {
+    async session({ session, token }) {
+      session.user.id = token.sub;
+      return session;
+    },
+  },
 });
