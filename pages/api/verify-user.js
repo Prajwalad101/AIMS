@@ -1,4 +1,5 @@
 // utility functions
+import { ObjectId } from "mongodb";
 import AppError from "../../lib/appError";
 import clientPromise from "../../lib/mongodb";
 
@@ -8,14 +9,14 @@ import globalErrorHandler from "../../middlewares/errorMd";
 
 async function handler(req, res) {
   const { method } = req;
-  const { email } = req.body;
+  const { id } = req.body;
 
   if (method === "POST") {
     const client = await clientPromise;
     const usersCollection = client.db().collection("users");
 
-    const updatedDoc = await usersCollection.update(
-      { email: email },
+    const updatedDoc = await usersCollection.updateOne(
+      { _id: ObjectId(id) },
       {
         $set: req.body,
       }

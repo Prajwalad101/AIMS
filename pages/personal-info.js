@@ -17,6 +17,7 @@ export default function PersonalInfo({ user, userSession }) {
   const [district, setDistrict] = useState(districts[0]);
 
   const mutation = useValidateUser();
+  const id = userSession.current.id;
   const email = userSession.current.email;
 
   const handleSubmit = (event) => {
@@ -25,12 +26,12 @@ export default function PersonalInfo({ user, userSession }) {
     const userInfo = {
       firstName,
       lastName,
-      email,
       district,
       familyMembers,
       municipality,
       provinceNo,
       tole,
+      id,
     };
     mutation.mutate(userInfo, {
       onSuccess: () => {

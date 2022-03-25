@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "../../../lib/mongoDb";
+import { ObjectId } from "mongodb";
+import clientPromise from "../../../lib/mongodb";
 
 // providers
 import GoogleProvider from "next-auth/providers/google";
@@ -27,14 +28,20 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.isVerified = false;
+        const client = await clientPromise;
+        const usersCollection = client.db().collection("users");
+
+        await usersCollection.updateOne(
+          { _id: ObjectId(token.sub) },
+          {
+            $set: { isVerified: "not-verified" },
+          }
+        );
       }
       return token;
     },
     async session({ session, token }) {
       session.user.id = token.sub;
-      session.user.isVerified = token.isVerified;
-
       return session;
     },
   },
