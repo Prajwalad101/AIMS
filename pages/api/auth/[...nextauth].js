@@ -25,8 +25,16 @@ export default NextAuth({
     colorScheme: "light",
   },
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.isVerified = false;
+      }
+      return token;
+    },
     async session({ session, token }) {
       session.user.id = token.sub;
+      session.user.isVerified = token.isVerified;
+
       return session;
     },
   },
