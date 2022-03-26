@@ -2,7 +2,7 @@ export const farmerSidebarData = [
   {
     title: "Dashboard",
     id: "1",
-    url: "/dashboard",
+    url: "/user/dashboard",
   },
   {
     title: "Personal Info",
@@ -30,7 +30,7 @@ export const adminSidebarData = [
   {
     title: "Dashboard",
     id: "1",
-    url: "/dashboard",
+    url: "/admin/dashboard",
   },
   {
     title: "Users",
@@ -53,3 +53,13 @@ export const adminSidebarData = [
     url: "/logout",
   },
 ];
+
+export const changeSidebarState = (url, setSelectedOption) => {
+  if (url.includes("dashboard")) {
+    setSelectedOption("Dashboard");
+  } else if (url.includes("personal-info")) {
+    setSelectedOption("Personal Info");
+  } else if (url.includes("inbox")) {
+    setSelectedOption;
+  }
+};

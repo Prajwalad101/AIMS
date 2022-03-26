@@ -1,18 +1,40 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { farmerSidebarData, adminSidebarData } from "./Sidebar-data";
+import {
+  farmerSidebarData,
+  adminSidebarData,
+  changeSidebarState,
+} from "./Sidebar-data";
 
 function Sidebar({ user }) {
   const router = useRouter();
-  const [selectedOption, setSelectedOption] = useState("Dashboard");
+  const url = router.pathname;
+
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   // change the sidebar data depending the logged in user
   const sidebarData = user === "farmer" ? farmerSidebarData : adminSidebarData;
 
+  useEffect(() => {
+    sidebarData.forEach((item) => {
+      if (url.includes(item.url)) {
+        setSelectedItem(item);
+      }
+    });
+  }, [url, sidebarData]);
+
+  useEffect(() => {
+    if (selectedItem === null) {
+      return;
+    }
+    setSelectedOption(selectedItem.title);
+  }, [selectedItem]);
+
   const linkHandler = (item) => {
-    setSelectedOption(item.title);
     router.push(`${item.url}`);
+    // setSelectedItem(item);
   };
 
   return (

@@ -30,8 +30,6 @@ export default function PersonalInfo({ userSession }) {
   // mutation object for adding user information
   const mutation = useValidateUser();
 
-  console.log(isButtonDisabled);
-
   useEffect(() => {
     verifyStatus !== "not-verified"
       ? setIsButtonDisabled(true)
@@ -61,7 +59,7 @@ export default function PersonalInfo({ userSession }) {
       { userInfo, id },
       {
         onSuccess: () => {
-          router.push("/dashboard");
+          router.push("/user/dashboard");
         },
       }
     );

@@ -1,4 +1,4 @@
-import useUser from "../hooks/users/useUser";
+import useUser from "../../hooks/users/useUser";
 
 function Dashboard({ userSession }) {
   const id = userSession.current.id;
@@ -11,7 +11,6 @@ function Dashboard({ userSession }) {
   const userData = data?.data;
   const verificationStatus = userData.isVerified;
 
-  console.log(verificationStatus);
   return (
     <div>
       <h1>Dashboard</h1>
