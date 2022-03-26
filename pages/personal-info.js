@@ -1,5 +1,5 @@
 // hooks
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import useValidateUser from "../hooks/users/useValidateUser";
 import useUser from "../hooks/users/useUser";
@@ -10,6 +10,10 @@ export default function PersonalInfo({ userSession }) {
   const router = useRouter();
   const id = userSession.current.id;
   const email = userSession.current.email;
+
+  // user information
+  const { isLoading, isError, error, data } = useUser(id);
+  const verifyStatus = data?.data.isVerified;
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -23,20 +27,24 @@ export default function PersonalInfo({ userSession }) {
 
   const [district, setDistrict] = useState(districts[0]);
 
+  // mutation object for adding user information
   const mutation = useValidateUser();
+
+  console.log(isButtonDisabled);
+
+  useEffect(() => {
+    verifyStatus !== "not-verified"
+      ? setIsButtonDisabled(true)
+      : setIsButtonDisabled(false);
+  }, [verifyStatus]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // TODO: ** UNCOMMENTED ONLY FOR TESTING **
+    if (isButtonDisabled) {
+      return;
+    }
 
-    // if (verifyStatus !== "not-verified" ) {
-    //   console.log("Cannot submit form");
-    //   return;
-    // } else if (isButtonDisabled) {
-    //   console.log("Already submitted");
-    //   return;
-    // }
     setIsButtonDisabled(true);
 
     const userInfo = {
@@ -58,9 +66,6 @@ export default function PersonalInfo({ userSession }) {
       }
     );
   };
-
-  const { isLoading, isError, error, data } = useUser(id);
-  const verifyStatus = data?.data.isVerified;
 
   if (isLoading) {
     return <div>Loading user info...</div>;
@@ -199,7 +204,9 @@ export default function PersonalInfo({ userSession }) {
                 <div className="mt-7 ml-2 mb-2 text-left ">
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+                      isButtonDisabled && "cursor-not-allowed"
+                    }`}
                     disabled={isButtonDisabled}
                   >
                     Save
