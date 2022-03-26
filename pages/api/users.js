@@ -18,7 +18,7 @@ async function handler(req, res) {
 
     return res.status(200).json({
       status: "success",
-      message: docs,
+      data: docs,
     });
   } else {
     const err = new AppError(`Could not find route for ${req.url}`, 404);

@@ -4,7 +4,7 @@ function Layout({ children, user }) {
   return (
     <div className="flex">
       <Sidebar user={user.current} />
-      <div className="sm:mx-7 mx-3 sm:mt-5 mt-5">{children}</div>
+      <div className="flex grow">{children}</div>
     </div>
   );
 }
