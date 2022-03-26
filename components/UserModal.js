@@ -1,15 +1,40 @@
+import useValidateUser from "../hooks/users/useValidateUser";
+
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 // import { ExclamationIcon } from "@heroicons/react/outline";
 
 export default function UserModal({ open, setOpen, user }) {
   const cancelButtonRef = useRef(null);
+  const mutation = useValidateUser();
 
   const verifyUser = () => {
+    mutation.mutate(
+      { userInfo: { isVerified: "verified" }, id: user._id },
+      {
+        onSuccess: () => {
+          console.log("User is verified");
+        },
+      }
+    );
     setOpen(false);
   };
 
   const blockUser = () => {
+    mutation.mutate(
+      {
+        userInfo: {
+          isVerified: "blocked",
+        },
+        id: user._id,
+      },
+
+      {
+        onSuccess: () => {
+          console.log("User blocked");
+        },
+      }
+    );
     setOpen(false);
   };
 

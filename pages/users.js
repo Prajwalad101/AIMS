@@ -6,7 +6,7 @@ import useUsers from "../hooks/users/useUsers";
 function Users() {
   const { isLoading, isError, data, error } = useUsers();
 
-  const users = data?.data;
+  let users = data?.data;
 
   const [selectedUser, setSelectedUser] = useState(null);
   const [open, setOpen] = useState(false);
@@ -23,6 +23,8 @@ function Users() {
   if (isError) {
     return <div>Error while fetching users information</div>;
   }
+
+  users = users.filter((user) => user.isVerified === "pending");
 
   return (
     <div className="flex grow mx-3 flex-col">
@@ -52,31 +54,37 @@ function Users() {
               </th>
             </tr>
           </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr className="border-b hover:bg-gray-50" key={user._id}>
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium whitespace-nowrap"
-                >
-                  {user.firstName} {user.lastName}
-                </th>
-                <td className="px-6 py-4">{user.email}</td>
-                <td className="px-6 py-4">{user.provinceNo}</td>
-                <td className="px-6 py-4">{user.district}</td>
-                <td className="px-6 py-4">{user.municipality}</td>
-                <td className="px-6 py-4 text-right">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    onClick={() => modalHandler(user)}
+          {users.length === 0 && (
+            <div className="py-3 pl-5 text-lg font-medium">No users found</div>
+          )}
+
+          {users.length !== 0 && (
+            <tbody>
+              {users.map((user) => (
+                <tr className="border-b hover:bg-gray-50" key={user._id}>
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium whitespace-nowrap"
                   >
-                    Details
-                  </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                    {user.firstName} {user.lastName}
+                  </th>
+                  <td className="px-6 py-4">{user.email}</td>
+                  <td className="px-6 py-4">{user.provinceNo}</td>
+                  <td className="px-6 py-4">{user.district}</td>
+                  <td className="px-6 py-4">{user.municipality}</td>
+                  <td className="px-6 py-4 text-right">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      onClick={() => modalHandler(user)}
+                    >
+                      Details
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

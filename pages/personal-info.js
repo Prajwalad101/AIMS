@@ -70,7 +70,7 @@ export default function PersonalInfo({ userSession }) {
 
   return (
     <>
-      <div>
+      <div className="mx-5 mt-4">
         <div className="flex flex-col">
           <div className="mb-5">
             <h3 className="text-xl font-semibold leading-6 text-gray-900">
