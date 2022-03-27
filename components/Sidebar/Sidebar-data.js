@@ -33,7 +33,7 @@ export const adminSidebarData = [
     url: "/admin/dashboard",
   },
   {
-    title: "Users",
+    title: "Applications",
     id: "2",
     url: "/users",
   },

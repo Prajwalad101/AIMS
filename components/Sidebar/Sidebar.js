@@ -38,7 +38,7 @@ function Sidebar({ user }) {
   };
 
   return (
-    <div className="w-64" aria-label="Sidebar">
+    <div className="w-64 fixed" aria-label="Sidebar">
       <div className="overflow-y-auto py-4 px-3 bg-gray-50 dark:bg-gray-800 h-[100vh] ">
         <a href="https://flowbite.com" className="flex pl-2.5 mb-5">
           <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">

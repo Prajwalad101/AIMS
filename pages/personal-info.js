@@ -27,6 +27,10 @@ export default function PersonalInfo({ userSession }) {
 
   const [district, setDistrict] = useState(districts[0]);
 
+  useEffect(() => {
+    setDistrict(districts[0]);
+  }, [districts]);
+
   // mutation object for adding user information
   const mutation = useValidateUser();
 
@@ -55,6 +59,7 @@ export default function PersonalInfo({ userSession }) {
       tole,
       isVerified: "pending",
     };
+
     mutation.mutate(
       { userInfo, id },
       {
@@ -73,10 +78,10 @@ export default function PersonalInfo({ userSession }) {
 
   return (
     <>
-      <div className="mx-5 mt-4">
+      <div className="font-poppins mx-5 mt-4">
         <div className="flex flex-col">
           <div className="mb-5">
-            <h3 className="text-xl font-semibold leading-6 text-gray-900">
+            <h3 className="font-lato text-xl font-semibold leading-6 text-gray-900">
               Add personal information for verification
             </h3>
           </div>
@@ -207,7 +212,7 @@ export default function PersonalInfo({ userSession }) {
                     }`}
                     disabled={isButtonDisabled}
                   >
-                    Save
+                    Submit
                   </button>
                 </div>
               </div>
