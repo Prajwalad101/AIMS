@@ -39,6 +39,18 @@ function Tabs({ selectedChart, setSelectedChart }) {
             Users
           </a>
         </li>
+        <li className="mr-2" onClick={() => setSelectedChart("crops-info")}>
+          <a
+            href="#"
+            className={`inline-block p-4 rounded-t-lg ${
+              selectedChart === "crops-info"
+                ? "bg-gray-100 text-blue-600 font-semibold"
+                : "hover:text-gray-600 hover:bg-gray-50"
+            }`}
+          >
+            Crops Info
+          </a>
+        </li>
       </ul>
     </div>
   );

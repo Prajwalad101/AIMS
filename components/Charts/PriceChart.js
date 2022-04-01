@@ -26,25 +26,24 @@ function PriceChart() {
 
   const data = {
     labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
+      "Milk (regular)",
+      "Loaf of Fresh White Bread",
+      "Rice (white)",
+      "Eggs (regular)",
+      "Local Cheese",
+      "Apples",
+      "Banana",
+      "Oranges",
+      "Tomato",
+      "Potato",
+      "Onion",
     ],
     datasets: [
       {
-        label: "Crops Added",
+        label: "Price",
         backgroundColor: "hsl(252, 82.9%, 67.8%)",
         borderColor: "hsl(252, 82.9%, 67.8%)",
-        data: [0, 10, 5, 2, 20, 30, 45, 10, 23, 18, 30],
+        data: [85, 100, 66, 18, 700, 120, 80, 220, 50, 32.5, 46.5],
       },
     ],
   };
