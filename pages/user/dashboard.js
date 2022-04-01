@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useSession } from "next-auth/react";
 import useUser from "../../hooks/users/useUser";
 
-function Dashboard({ userSession }) {
-  const id = userSession.current.id;
+function Dashboard() {
+  const { data: userSession, status } = useSession();
+
+  const id = userSession.user.id;
   const { isLoading, isError, error, data } = useUser(id);
 
   if (isLoading) {

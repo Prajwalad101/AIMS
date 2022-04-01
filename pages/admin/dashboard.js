@@ -6,9 +6,12 @@ import PriceChart from "../../components/Charts/PriceChart";
 import Tabs from "../../components/Tabs";
 import useUser from "../../hooks/users/useUser";
 import CropDetailChart from "../../components/Charts/CropDetailChart";
+import { useSession } from "next-auth/react";
 
-function Dashboard({ userSession }) {
-  const id = userSession.current.id;
+function Dashboard() {
+  const { data: userSession, status } = useSession();
+
+  const id = userSession.user.id;
   const { isLoading, isError, error, data } = useUser(id);
 
   const [selectedChart, setSelectedChart] = useState("users");

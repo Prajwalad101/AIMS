@@ -5,11 +5,14 @@ import useValidateUser from "../hooks/users/useValidateUser";
 import useUser from "../hooks/users/useUser";
 
 import { getDistricts } from "../utils/formData";
+import { useSession } from "next-auth/react";
 
-export default function PersonalInfo({ userSession }) {
+export default function PersonalInfo() {
+  const { data: userSession, status } = useSession();
+
   const router = useRouter();
-  const id = userSession.current.id;
-  const email = userSession.current.email;
+  const id = userSession.user.id;
+  const email = userSession.user.email;
 
   // user information
   const { isLoading, isError, error, data } = useUser(id);

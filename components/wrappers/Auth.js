@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import useAdmin from "../../hooks/users/useAdmin";
 
-function Auth({ children, loggedUser, userSession }) {
+function Auth({ children, loggedUser }) {
   const { data: session, status } = useSession({ required: true });
 
   // check for the user
@@ -9,16 +9,13 @@ function Auth({ children, loggedUser, userSession }) {
 
   // logged in user information
   const userInfo = session?.user;
-  userSession.current = userInfo;
   // check if user email matches the admin email
   const { data, isError, error } = useAdmin(userInfo?.email);
 
   // if not, the user is a farmer
   if (data?.body.length === 0) {
-    // userSession.current.role = "farmer";
     loggedUser.current = "farmer";
   } else {
-    // userSession.current.role = "admin";
     loggedUser.current = "admin";
   }
 
