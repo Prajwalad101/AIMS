@@ -4,7 +4,7 @@ const getAdminById = async (id) => {
   const res = await fetch(`/api/admin/${id}`);
 
   if (!res.ok) {
-    throw new Error("No developer with that id found");
+    throw new Error("No admin with that id found");
   }
   return res.json();
 };
