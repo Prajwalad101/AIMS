@@ -48,13 +48,13 @@ function Sidebar({ user }) {
               className="hover:cursor-pointer hover:bg-gray-700 rounded-sm text-white"
               onClick={() => linkHandler(item)}
             >
-              <div className="flex items-center pl-3">
+              <div
+                className={`flex items-center pl-3 ${
+                  selectedOption === item.title ? "bg-gray-700" : ""
+                }`}
+              >
                 {item.icon}
-                <a
-                  className={`flex items-center p-2 text-base font-lato ${
-                    selectedOption === item.title ? "bg-gray-700" : ""
-                  }`}
-                >
+                <a className="flex items-center p-2 text-base font-lato">
                   <span className="ml-3">{item.title}</span>
                 </a>
               </div>
