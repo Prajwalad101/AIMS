@@ -1,11 +1,8 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-import {
-  farmerSidebarData,
-  adminSidebarData,
-  changeSidebarState,
-} from "./Sidebar-data";
+import { farmerSidebarData, adminSidebarData } from "./Sidebar-data";
+import UserDropdown from "../UserDropdown";
 
 function Sidebar({ user }) {
   const router = useRouter();
@@ -34,34 +31,39 @@ function Sidebar({ user }) {
 
   const linkHandler = (item) => {
     router.push(`${item.url}`);
-    // setSelectedItem(item);
   };
 
   return (
     <div className="w-64 fixed" aria-label="Sidebar">
       <div className="overflow-y-auto py-4 px-3 bg-gray-50 dark:bg-gray-800 h-[100vh] ">
         <a href="https://flowbite.com" className="flex pl-2.5 mb-5">
-          <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-lg font-poppins font-semibold whitespace-nowrap text-white tracking-wider">
             AIMS
           </span>
         </a>
-        <ul className="space-y-2">
+        <ul className="space-y-3">
           {sidebarData.map((item) => (
             <li
               key={item.id}
-              className="hover:cursor-pointer"
+              className="hover:cursor-pointer hover:bg-gray-700 rounded-sm text-white"
               onClick={() => linkHandler(item)}
             >
-              <a
-                className={`flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700 ${
-                  selectedOption === item.title ? "bg-gray-700" : ""
-                }`}
-              >
-                <span className="ml-3">{item.title}</span>
-              </a>
+              <div className="flex items-center pl-3">
+                {item.icon}
+                <a
+                  className={`flex items-center p-2 text-base font-lato ${
+                    selectedOption === item.title ? "bg-gray-700" : ""
+                  }`}
+                >
+                  <span className="ml-3">{item.title}</span>
+                </a>
+              </div>
             </li>
           ))}
         </ul>
+        <div className=" mt-8 ">
+          <UserDropdown user={user} />
+        </div>
       </div>
     </div>
   );

@@ -1,29 +1,38 @@
+import { BsFillPersonLinesFill } from "react-icons/bs";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { RiInboxUnarchiveLine } from "react-icons/ri";
+import { BiFoodMenu } from "react-icons/bi";
+
 export const farmerSidebarData = [
   {
     title: "Dashboard",
     id: "1",
     url: "/user/dashboard",
+    icon: <MdOutlineSpaceDashboard size={20} />,
   },
   {
     title: "Personal Info",
     id: "2",
     url: "/personal-info",
+    icon: <BsFillPersonLinesFill size={20} />,
   },
   {
     title: "Inbox",
     id: "3",
     url: "/inbox",
+    icon: <RiInboxUnarchiveLine size={20} />,
   },
   {
     title: "Products",
     id: "4",
     url: "/products",
+    icon: <BiFoodMenu size={20} />,
   },
-  {
-    title: "Log out",
-    id: "5",
-    url: "/logout",
-  },
+  // {
+  //   title: "Log out",
+  //   id: "5",
+  //   url: "/logout",
+  // },
 ];
 
 export const adminSidebarData = [
@@ -47,11 +56,11 @@ export const adminSidebarData = [
     id: "4",
     url: "/products",
   },
-  {
-    title: "Log out",
-    id: "5",
-    url: "/logout",
-  },
+  // {
+  //   title: "Log out",
+  //   id: "5",
+  //   url: "/logout",
+  // },
 ];
 
 export const changeSidebarState = (url, setSelectedOption) => {
