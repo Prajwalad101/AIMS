@@ -45,14 +45,12 @@ function Sidebar({ user }) {
           {sidebarData.map((item) => (
             <li
               key={item.id}
-              className="hover:cursor-pointer hover:bg-gray-700 rounded-sm text-white"
+              className={`hover:cursor-pointer hover:bg-gray-700 rounded-sm text-white ${
+                selectedOption === item.title ? "bg-gray-700" : ""
+              }`}
               onClick={() => linkHandler(item)}
             >
-              <div
-                className={`flex items-center pl-3 ${
-                  selectedOption === item.title ? "bg-gray-700" : ""
-                }`}
-              >
+              <div className="flex items-center pl-3 ">
                 {item.icon}
                 <a className="flex items-center p-2 text-base font-lato">
                   <span className="ml-3">{item.title}</span>
