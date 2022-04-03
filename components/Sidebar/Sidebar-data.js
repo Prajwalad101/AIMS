@@ -25,14 +25,9 @@ export const farmerSidebarData = [
   {
     title: "Products",
     id: "4",
-    url: "/products",
+    url: "/user/products",
     icon: <BiFoodMenu size={20} />,
   },
-  // {
-  //   title: "Log out",
-  //   id: "5",
-  //   url: "/logout",
-  // },
 ];
 
 export const adminSidebarData = [
@@ -40,27 +35,26 @@ export const adminSidebarData = [
     title: "Dashboard",
     id: "1",
     url: "/admin/dashboard",
+    icon: <MdOutlineSpaceDashboard size={20} />,
   },
   {
     title: "Applications",
     id: "2",
     url: "/users",
+    icon: <BsFillPersonLinesFill size={20} />,
   },
   {
     title: "Inbox",
     id: "3",
     url: "/inbox",
+    icon: <RiInboxUnarchiveLine size={20} />,
   },
   {
     title: "Products",
     id: "4",
-    url: "/products",
+    url: "/admin/products",
+    icon: <BiFoodMenu size={20} />,
   },
-  // {
-  //   title: "Log out",
-  //   id: "5",
-  //   url: "/logout",
-  // },
 ];
 
 export const changeSidebarState = (url, setSelectedOption) => {

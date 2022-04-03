@@ -11,8 +11,15 @@ function classNames(...classes) {
 export default function UserDropdown({ user }) {
   const { data: session, status } = useSession();
 
-  const firstName = session.user.name.split(" ")[0];
   const image = session.user.image;
+
+  let shortenedEmail;
+  const shortenLength = 22;
+
+  if (session.user.email.length >= shortenLength) {
+    shortenedEmail = session.user.email.slice(0, shortenLength);
+    shortenedEmail += "...";
+  }
 
   return (
     <Menu as="div" className="relative">
@@ -49,7 +56,7 @@ export default function UserDropdown({ user }) {
             </Menu.Item>
             <Menu.Item>
               <a href="#" className="text-gray-300 block px-4 py-2 text-sm">
-                {session.user.email}
+                {shortenedEmail}
               </a>
             </Menu.Item>
             <Menu.Item>
