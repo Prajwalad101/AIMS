@@ -30,10 +30,12 @@ function Users() {
   return (
     <div className="font-poppins flex grow mx-3 flex-col">
       <UserModal open={open} setOpen={setOpen} user={selectedUser} />
-      <h1 className="text-xl font-medium py-3 pl-2 mb-2">Applicants</h1>
+      <h1 className="text-2xl font-ibm font-medium py-3 pl-2 mb-2 text-gray-700">
+        Applicants
+      </h1>
       <div className="relative overflow-x-auto shadow-md rounded-sm w-full">
         <table className="w-full text-sm text-left">
-          <thead className="text-[15px] text-gray-500 uppercase bg-gray-200">
+          <thead className="text-[14px] text-gray-400 font-ibm uppercase bg-gray-100">
             <tr>
               <th scope="col" className="px-6 py-3">
                 User

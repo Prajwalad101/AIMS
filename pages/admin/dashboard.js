@@ -30,7 +30,7 @@ function Dashboard() {
   return (
     <div className="w-full mx-5 mt-5">
       <div className="flex items-center gap-10">
-        <h1 className="font-ibm text-[25px] font-medium">
+        <h1 className="font-ibm text-[25px] font-medium text-gray-700">
           Welcome, {userName}
         </h1>
         <div className="flex gap-3 items-center font-poppins">
