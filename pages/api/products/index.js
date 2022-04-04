@@ -1,13 +1,13 @@
 // utils
-import dbConnect from "../../lib/dbConnect";
-import AppError from "../../lib/appError";
+import dbConnect from "../../../lib/dbConnect";
+import AppError from "../../../lib/appError";
 
 // middlewares
-import catchAsync from "../../middlewares/catchAsync";
-import globalErrorHandler from "../../middlewares/errorMd";
+import catchAsync from "../../../middlewares/catchAsync";
+import globalErrorHandler from "../../../middlewares/errorMd";
 
 // models
-import Product from "../../models/productModel";
+import Product from "../../../models/productModel";
 
 async function handler(req, res) {
   await dbConnect();
