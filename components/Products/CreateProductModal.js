@@ -1,18 +1,35 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+
+import { productData, checkIfValid } from "../../utils/productData";
 
 export default function CreateProductModal({ open, setOpen }) {
   const cancelButtonRef = useRef(null);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // setOpen(false);
-  };
-
   const [productName, setProductName] = useState("");
   const [productType, setProductType] = useState("");
   const [province, setProvince] = useState(1);
+
+  const [isValid, setIsValid] = useState(null);
+  const [isProvinceValid, setIsProvinceValid] = useState(true);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const valid = checkIfValid(productName);
+    setIsValid(valid);
+
+    // check if the province is valid
+    if (Number(province) >= 1 && Number(province) <= 7) {
+      setIsProvinceValid(true);
+    } else {
+      setIsProvinceValid(false);
+      return;
+    }
+
+    // check if the name is valid
+    if (valid === false) return;
+    setOpen(false);
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -62,26 +79,29 @@ export default function CreateProductModal({ open, setOpen }) {
                       >
                         Create Product
                       </Dialog.Title>
+
                       <div className="mb-6 mt-5 font-poppins">
                         {/* Product Name Input */}
                         <label className="block mb-2 text-sm font-medium text-gray-900">
-                          Product Name
+                          Product Name{" "}
+                          <span
+                            className={`font-medium text-red-500 ${
+                              isValid === false ? "inline" : "hidden"
+                            }`}
+                          >
+                            (Product already exists!)
+                          </span>
                         </label>
                         <input
                           type="text"
                           value={productName}
                           onChange={(e) => setProductName(e.target.value)}
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full mb-5 p-2.5"
                           placeholder="Eg: Wheat"
                           required
                           minLength={3}
                           maxLength={20}
                         />
-                        <p className="mt-2 text-sm text-red-500">
-                          {/* <span className="font-medium">
-                            Product already available!
-                          </span> */}
-                        </p>
 
                         {/* Product Type */}
                         <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -91,20 +111,23 @@ export default function CreateProductModal({ open, setOpen }) {
                           type="text"
                           value={productType}
                           onChange={(e) => setProductType(e.target.value)}
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full mb-5 p-2.5"
                           placeholder="Eg: Vegetable"
                           required
                           minLength={3}
                           maxLength={15}
                         />
-                        <p className="mt-2 text-sm text-red-500">
-                          {/* <span className="font-medium">
-                            Product already available!
-                          </span> */}
-                        </p>
+
                         {/* Province No. Input */}
                         <label className="block mb-2 text-sm font-medium text-gray-900">
-                          Province No
+                          Province No{" "}
+                          <span
+                            className={`font-medium text-red-500 ${
+                              isProvinceValid ? "hidden" : ""
+                            }`}
+                          >
+                            (Invalid Province set!)
+                          </span>
                         </label>
                         <input
                           type="number"
@@ -112,14 +135,8 @@ export default function CreateProductModal({ open, setOpen }) {
                           onChange={(e) => setProvince(e.target.value)}
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                           required
-                          min={1}
-                          max={7}
                         />
-                        <p className="mt-2 text-sm text-red-500">
-                          {/* <span className="font-medium">
-                            Invalid Province no!
-                          </span> */}
-                        </p>
+                        <p className="mt-2 text-sm text-red-500"></p>
                       </div>
                     </div>
                   </div>
