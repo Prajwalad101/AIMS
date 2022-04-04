@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-import { productData, checkIfValid } from "../../utils/productData";
+import { checkIfValid } from "../../utils/productData";
 
 export default function CreateProductModal({ open, setOpen }) {
   const cancelButtonRef = useRef(null);
