@@ -1,5 +1,6 @@
-export default function ProductsList({ products }) {
-  const modalHandler = () => {};
+import { RiDeleteBin4Line } from "react-icons/ri";
+
+export default function ProductsList({ products, delModalHandler }) {
   return (
     <div className="relative overflow-x-auto shadow-md rounded-sm w-full grow">
       <table className="w-full text-sm text-left">
@@ -14,7 +15,6 @@ export default function ProductsList({ products }) {
             <th scope="col" className="px-6 py-3">
               Province
             </th>
-
             <th scope="col" className="px-6 py-3 text-gray-500">
               <span className="sr-only">Edit</span>
             </th>
@@ -37,6 +37,15 @@ export default function ProductsList({ products }) {
               </th>
               <td className="px-6 py-4 capitalize">{product.type}</td>
               <td className="px-6 py-4">{product.province}</td>
+              <td
+                className="py-4 mr-10 flex items-center justify-end"
+                onClick={() => delModalHandler(product)}
+              >
+                <RiDeleteBin4Line
+                  size={20}
+                  className="text-gray-600 hover:cursor-pointer hover:text-red-500"
+                />
+              </td>
             </tr>
           ))}
         </tbody>

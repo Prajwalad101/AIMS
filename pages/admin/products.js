@@ -1,11 +1,14 @@
 import { useState } from "react";
 
 import CreateProductModal from "../../components/Products/CreateProductModal";
+import DeleteProductModal from "../../components/Products/DeleteProductModal";
 import ProductsList from "../../components/Products/ProductsList";
 import useProducts from "../../hooks/products/useProducts";
 
 function Products({ user }) {
   const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [delProduct, setDelProduct] = useState(null);
 
   const { isLoading, isError, data, error } = useProducts();
 
@@ -13,6 +16,11 @@ function Products({ user }) {
   if (isError) return <div>Error: {error}</div>;
 
   const products = data?.data;
+
+  const delModalHandler = (product) => {
+    setDelProduct(product);
+    setOpenDeleteModal(true);
+  };
 
   return (
     <div className="font-poppins mx-5 mt-4 w-full">
@@ -27,11 +35,16 @@ function Products({ user }) {
           Create product
         </span>
       </button>
-      <ProductsList products={products} />
+      <ProductsList products={products} delModalHandler={delModalHandler} />
       <CreateProductModal
         open={openModal}
         setOpen={setOpenModal}
         products={products}
+      />
+      <DeleteProductModal
+        open={openDeleteModal}
+        setOpen={setOpenDeleteModal}
+        product={delProduct}
       />
     </div>
   );
