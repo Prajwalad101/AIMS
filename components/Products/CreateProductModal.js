@@ -2,8 +2,9 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 import { checkIfValid } from "../../utils/productData";
+import useCreateProduct from "../../hooks/products/useCreateProduct";
 
-export default function CreateProductModal({ open, setOpen }) {
+export default function CreateProductModal({ open, setOpen, products }) {
   const cancelButtonRef = useRef(null);
 
   const [productName, setProductName] = useState("");
@@ -13,9 +14,11 @@ export default function CreateProductModal({ open, setOpen }) {
   const [isValid, setIsValid] = useState(null);
   const [isProvinceValid, setIsProvinceValid] = useState(true);
 
+  const mutation = useCreateProduct();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const valid = checkIfValid(productName);
+    const valid = checkIfValid(products, productName);
     setIsValid(valid);
 
     // check if the province is valid
@@ -28,7 +31,14 @@ export default function CreateProductModal({ open, setOpen }) {
 
     // check if the name is valid
     if (valid === false) return;
-    setOpen(false);
+
+    const product = { name: productName, type: productType, province };
+
+    mutation.mutate(product, {
+      onSuccess: () => {
+        setOpen(false);
+      },
+    });
   };
 
   return (

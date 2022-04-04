@@ -28,7 +28,11 @@ function Products({ user }) {
         </span>
       </button>
       <ProductsList products={products} />
-      <CreateProductModal open={openModal} setOpen={setOpenModal} />
+      <CreateProductModal
+        open={openModal}
+        setOpen={setOpenModal}
+        products={products}
+      />
     </div>
   );
 }

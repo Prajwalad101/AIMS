@@ -6,7 +6,7 @@ export default function ProductsList({ products }) {
         <thead className="text-[14px] text-gray-400 font-ibm uppercase bg-gray-100">
           <tr>
             <th scope="col" className="px-6 py-3">
-              Crop
+              Product
             </th>
             <th scope="col" className="px-6 py-3 ">
               Type
