@@ -1,6 +1,21 @@
+import Image from "next/image";
+import emptycart from "../../public/empty-cart.png";
 import { RiDeleteBin4Line } from "react-icons/ri";
 
 export default function ProductsList({ products, delModalHandler }) {
+  if (products.length === 0) {
+    return (
+      <div className="flex items-center flex-col justify-center">
+        <Image src={emptycart} alt="no-data" width={450} height={380} />
+        <h1 className="text-2xl font-medium font-ibm mb-2">
+          No Products found!
+        </h1>
+        <p className="text-gray-600">
+          Create products using the button on the top-right corner{" "}
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="relative overflow-x-auto shadow-md rounded-sm w-full grow">
       <table className="w-full text-sm text-left">
@@ -37,13 +52,11 @@ export default function ProductsList({ products, delModalHandler }) {
               </th>
               <td className="px-6 py-4 capitalize">{product.type}</td>
               <td className="px-6 py-4">{product.province}</td>
-              <td
-                className="py-4 mr-10 flex items-center justify-end"
-                onClick={() => delModalHandler(product)}
-              >
+              <td className="py-4 mr-10 flex items-center justify-end">
                 <RiDeleteBin4Line
                   size={20}
                   className="text-gray-600 hover:cursor-pointer hover:text-red-500"
+                  onClick={() => delModalHandler(product)}
                 />
               </td>
             </tr>

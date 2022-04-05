@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import UserModal from "../components/UserModal";
 import useUsers from "../hooks/users/useUsers";
+import nodata from "../public/no-data.png";
 
 function Users() {
   const { isLoading, isError, data, error } = useUsers();
@@ -26,6 +27,17 @@ function Users() {
   }
 
   users = users.filter((user) => user.isVerified === "pending");
+
+  if (users.length === 0) {
+    return (
+      <div className="flex flex-col justify-center items-center mx-auto mt-16">
+        <Image src={nodata} alt="no-records" width={450} height={400} />
+        <h1 className="text-2xl font-medium font-ibm mb-2">
+          Sorry! No Applications found
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <div className="font-poppins flex grow mx-3 flex-col">
@@ -57,11 +69,6 @@ function Users() {
               </th>
             </tr>
           </thead>
-          {users.length === 0 && (
-            <div className="py-3 pl-5 text-lg font-medium">
-              No submissions found
-            </div>
-          )}
 
           {users.length !== 0 && (
             <tbody>
