@@ -3,6 +3,8 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import useDeleteProduct from "../../hooks/products/useDeleteProduct";
 
+import { deleteToastNotify } from "../../utils/toastFunc";
+
 export default function DeleteProductModal({ open, setOpen, product }) {
   const cancelButtonRef = useRef(null);
   const mutation = useDeleteProduct();
@@ -11,6 +13,7 @@ export default function DeleteProductModal({ open, setOpen, product }) {
     mutation.mutate(product._id, {
       onSuccess: () => {
         setOpen(false);
+        deleteToastNotify();
       },
     });
   };

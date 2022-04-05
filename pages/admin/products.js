@@ -1,11 +1,13 @@
 import { useState } from "react";
+import useProducts from "../../hooks/products/useProducts";
 
 import CreateProductModal from "../../components/Products/CreateProductModal";
 import DeleteProductModal from "../../components/Products/DeleteProductModal";
 import ProductsList from "../../components/Products/ProductsList";
-import useProducts from "../../hooks/products/useProducts";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function Products({ user }) {
+function Products() {
   const [openModal, setOpenModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [delProduct, setDelProduct] = useState(null);
@@ -24,17 +26,28 @@ function Products({ user }) {
 
   return (
     <div className="font-poppins mx-5 mt-4 w-full">
-      <h1 className="text-2xl font-medium font-ibm mb-5 text-gray-600">
-        Available Products
-      </h1>
-      <button
-        className="relative inline-flex items-center justify-center p-0.5 mr-2 mb-7 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300"
-        onClick={() => setOpenModal(true)}
-      >
-        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0 hidden sm:inline">
-          Create product
-        </span>
-      </button>
+      <ToastContainer
+        autoClose={2000}
+        pauseOnFocusLoss={false}
+        bodyClassName="font-poppins text-sm"
+      />
+      <div className="flex items-start justify-between">
+        {products.length !== 0 && (
+          <h1 className="text-[22px] font-medium font-ibm mb-5 text-gray-600">
+            Available Products
+          </h1>
+        )}
+
+        <hr />
+        <button
+          className="relative inline-flex items-center justify-center p-0.5 mr-2 mb-7 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br bg-blue-600 hover:bg-blue-500 hover:shadow-md transition-all focus:ring-4 focus:outline-none focus:ring-blue-300"
+          onClick={() => setOpenModal(true)}
+        >
+          <span className="relative px-3 py-2 transition-all ease-in duration-75 rounded-md hidden sm:inline">
+            Create Product
+          </span>
+        </button>
+      </div>
       <ProductsList products={products} delModalHandler={delModalHandler} />
       <CreateProductModal
         open={openModal}

@@ -16,7 +16,7 @@ async function handler(req, res) {
 
   if (method === "DELETE") {
     await Product.findByIdAndDelete(productId);
-    return res.status(204);
+    return res.status(204).json();
   } else {
     const err = new AppError(`No route for ${req.url} found`, 404);
     globalErrorHandler(err, req, res);

@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 
 import { checkIfValid } from "../../utils/productData";
 import useCreateProduct from "../../hooks/products/useCreateProduct";
+import { addToastNotify } from "../../utils/toastFunc";
 
 export default function CreateProductModal({ open, setOpen, products }) {
   const cancelButtonRef = useRef(null);
@@ -37,6 +38,7 @@ export default function CreateProductModal({ open, setOpen, products }) {
     mutation.mutate(product, {
       onSuccess: () => {
         setOpen(false);
+        addToastNotify();
       },
     });
   };
