@@ -33,7 +33,7 @@ function Users() {
       <div className="flex flex-col justify-center items-center mx-auto mt-16">
         <Image src={nodata} alt="no-records" width={450} height={400} />
         <h1 className="text-2xl font-medium font-ibm mb-2">
-          Sorry! No Applications found
+          No Applications found!
         </h1>
       </div>
     );

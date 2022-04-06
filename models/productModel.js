@@ -16,11 +16,17 @@ const productSchema = new mongoose.Schema({
     maxlength: 15,
     minlength: 3,
   },
-  province: {
+  marketPrice: {
     type: Number,
-    required: [true, "A product must have a province"],
-    min: 1,
-    max: 7,
+    required: [true, "A product must have a market price"],
+    min: 10,
+    max: 100000,
+  },
+  unit: {
+    type: String,
+    required: [true, "A product must have a unit"],
+    lowercase: true,
+    enum: ["kilogram", "litre", "gram"],
   },
 });
 

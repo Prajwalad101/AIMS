@@ -28,7 +28,7 @@ export default function ProductsList({ products, delModalHandler }) {
               Type
             </th>
             <th scope="col" className="px-6 py-3">
-              Province
+              Market Price
             </th>
             <th scope="col" className="px-6 py-3 text-gray-500">
               <span className="sr-only">Edit</span>
@@ -51,7 +51,9 @@ export default function ProductsList({ products, delModalHandler }) {
                 </div>
               </th>
               <td className="px-6 py-4 capitalize">{product.type}</td>
-              <td className="px-6 py-4">{product.province}</td>
+              <td className="px-6 py-4">
+                {product.marketPrice} per {product.unit}
+              </td>
               <td className="py-4 mr-10 flex items-center justify-end">
                 <RiDeleteBin4Line
                   size={20}

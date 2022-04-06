@@ -10,10 +10,10 @@ export default function CreateProductModal({ open, setOpen, products }) {
 
   const [productName, setProductName] = useState("");
   const [productType, setProductType] = useState("");
-  const [province, setProvince] = useState(1);
+  const [marketPrice, setMarketPrice] = useState("");
+  const [unit, setUnit] = useState("");
 
   const [isValid, setIsValid] = useState(null);
-  const [isProvinceValid, setIsProvinceValid] = useState(true);
 
   const mutation = useCreateProduct();
 
@@ -22,18 +22,15 @@ export default function CreateProductModal({ open, setOpen, products }) {
     const valid = checkIfValid(products, productName);
     setIsValid(valid);
 
-    // check if the province is valid
-    if (Number(province) >= 1 && Number(province) <= 7) {
-      setIsProvinceValid(true);
-    } else {
-      setIsProvinceValid(false);
-      return;
-    }
-
     // check if the name is valid
     if (valid === false) return;
 
-    const product = { name: productName, type: productType, province };
+    const product = {
+      name: productName,
+      type: productType,
+      marketPrice,
+      unit,
+    };
 
     mutation.mutate(product, {
       onSuccess: () => {
@@ -124,40 +121,48 @@ export default function CreateProductModal({ open, setOpen, products }) {
                           value={productType}
                           onChange={(e) => setProductType(e.target.value)}
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full mb-5 p-2.5"
-                          placeholder="Eg: Vegetable"
+                          placeholder="Eg: Crop"
                           required
                           minLength={3}
                           maxLength={15}
                         />
 
-                        {/* Province No. Input */}
+                        {/* Market Price */}
                         <label className="block mb-2 text-sm font-medium text-gray-900">
-                          Province No{" "}
-                          <span
-                            className={`font-medium text-red-500 ${
-                              isProvinceValid ? "hidden" : ""
-                            }`}
-                          >
-                            (Invalid Province set!)
-                          </span>
+                          Market Price
                         </label>
                         <input
                           type="number"
-                          value={province}
-                          onChange={(e) => setProvince(e.target.value)}
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                          value={marketPrice}
+                          onChange={(e) => setMarketPrice(e.target.value)}
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full mb-5 p-2.5"
                           required
+                          min={10}
+                          max={100000}
                         />
-                        <p className="mt-2 text-sm text-red-500"></p>
+
+                        {/* Unit */}
+                        <label className="block mb-2 text-sm font-medium text-gray-900">
+                          Unit
+                        </label>
+                        <div className="mb-3 xl:w-96">
+                          <select
+                            className="form-select text-sm appearance-none block w-[60%] font-normal text-gray-700  bg-clip-padding bg-no-repeat border border-solid bg-gray-50  rounded transition ease-in-out m-0 focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                            aria-label="Select a unit"
+                            value={unit}
+                            onChange={(e) => setUnit(e.target.value)}
+                          >
+                            <option value="Kilogram">Kilogram</option>
+                            <option value="Gram">Gram</option>
+                            <option value="Litre">Litre</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                  <button
-                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
-                    // onClick={() => setOpen(false)}
-                  >
+                  <button className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
                     Create
                   </button>
                   <button
