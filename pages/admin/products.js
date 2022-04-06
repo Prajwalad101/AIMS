@@ -6,6 +6,7 @@ import DeleteProductModal from "../../components/Products/DeleteProductModal";
 import ProductsList from "../../components/Products/ProductsList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProductDropdown from "../../components/UI/ProductDropdown";
 
 function Products() {
   const [openModal, setOpenModal] = useState(false);

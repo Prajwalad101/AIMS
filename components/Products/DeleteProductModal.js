@@ -66,9 +66,11 @@ export default function DeleteProductModal({ open, setOpen, product }) {
                       className="font-ibm text-lg leading-6 font-medium text-gray-900"
                     >
                       Delete Product{" "}
-                      <span className="text-gray-700">({product.name})</span>
+                      <span className="text-gray-500 capitalize">
+                        ({product.name})
+                      </span>
                     </Dialog.Title>
-                    <div className="mt-2">
+                    <div className="mt-4">
                       <p className="text-sm text-gray-500 font-poppins">
                         Are you sure you want to delete the product? This action
                         cannot be undone

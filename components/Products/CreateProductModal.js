@@ -11,7 +11,7 @@ export default function CreateProductModal({ open, setOpen, products }) {
   const [productName, setProductName] = useState("");
   const [productType, setProductType] = useState("");
   const [marketPrice, setMarketPrice] = useState("");
-  const [unit, setUnit] = useState("");
+  const [unit, setUnit] = useState("Kilogram");
 
   const [isValid, setIsValid] = useState(null);
 

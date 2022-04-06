@@ -1,6 +1,7 @@
 import Image from "next/image";
 import emptycart from "../../public/empty-cart.png";
-import { RiDeleteBin4Line } from "react-icons/ri";
+
+import ProductDropdown from "../UI/ProductDropdown";
 
 export default function ProductsList({ products, delModalHandler }) {
   if (products.length === 0) {
@@ -17,7 +18,7 @@ export default function ProductsList({ products, delModalHandler }) {
     );
   }
   return (
-    <div className="relative overflow-x-auto shadow-md rounded-sm w-full grow">
+    <div className="relative overflow-x-auto overflow-y-auto shadow-md rounded-sm w-full grow">
       <table className="w-full text-sm text-left">
         <thead className="text-[14px] text-gray-400 font-ibm uppercase bg-gray-100">
           <tr>
@@ -54,11 +55,10 @@ export default function ProductsList({ products, delModalHandler }) {
               <td className="px-6 py-4">
                 {product.marketPrice} per {product.unit}
               </td>
-              <td className="py-4 mr-10 flex items-center justify-end">
-                <RiDeleteBin4Line
-                  size={20}
-                  className="text-gray-600 hover:cursor-pointer hover:text-red-500"
-                  onClick={() => delModalHandler(product)}
+              <td className="py-4 mr-10 flex justify-end">
+                <ProductDropdown
+                  product={product}
+                  delModalHandler={delModalHandler}
                 />
               </td>
             </tr>
