@@ -14,7 +14,20 @@ async function handler(req, res) {
   const { method } = req;
   const { productId } = req.query;
 
-  if (method === "DELETE") {
+  if (method === "PATCH") {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      { _id: productId },
+      req.body,
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json({
+      status: "success",
+      data: updatedProduct,
+    });
+  } else if (method === "DELETE") {
     await Product.findByIdAndDelete(productId);
     return res.status(204).json();
   } else {
