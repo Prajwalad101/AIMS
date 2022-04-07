@@ -78,6 +78,7 @@ function Products() {
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
         product={updateProduct}
+        products={products}
       />
     </div>
   );

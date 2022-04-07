@@ -4,6 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { updateToastNotify } from "../../utils/toastFunc";
 
 import useUpdateProduct from "../../hooks/products/useUpdateProduct";
+import { checkIfValid } from "../../utils/productData";
 
 const unitData = [
   { name: "kilogram", id: 1 },
@@ -11,7 +12,12 @@ const unitData = [
   { name: "litre", id: 3 },
 ];
 
-export default function UpdateProductModal({ open, setOpen, product }) {
+export default function UpdateProductModal({
+  open,
+  setOpen,
+  product,
+  products,
+}) {
   const cancelButtonRef = useRef(null);
 
   const [productName, setProductName] = useState(null);
@@ -19,10 +25,17 @@ export default function UpdateProductModal({ open, setOpen, product }) {
   const [marketPrice, setMarketPrice] = useState(null);
   const [unit, setUnit] = useState(null);
 
+  const [isValid, setIsValid] = useState(null);
+
   const mutation = useUpdateProduct(product?._id);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const valid = checkIfValid(products, productName);
+    setIsValid(valid);
+
+    // check if name is valid
+    if (valid === false) return;
 
     const product = {
       name: productName,
@@ -47,8 +60,6 @@ export default function UpdateProductModal({ open, setOpen, product }) {
       setUnit(product.unit);
     }
   }, [product]);
-
-  console.log(unit);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -103,7 +114,15 @@ export default function UpdateProductModal({ open, setOpen, product }) {
                         {/* Product Name Input */}
                         <label className="block mb-2 text-sm font-medium text-gray-900">
                           Product Name{" "}
+                          <span
+                            className={`font-medium text-red-500 ${
+                              isValid === false ? "inline" : "hidden"
+                            }`}
+                          >
+                            (Product already exists!)
+                          </span>
                         </label>
+
                         <input
                           type="text"
                           value={productName}
