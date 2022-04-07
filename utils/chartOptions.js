@@ -2,7 +2,6 @@ export const chartOptions = {
   responsive: true,
   plugins: {
     legend: {
-      position: "chartArea",
       labels: {
         font: {
           family: "Poppins",

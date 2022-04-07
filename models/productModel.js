@@ -26,7 +26,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "A product must have a unit"],
     lowercase: true,
-    enum: ["kilogram", "litre", "gram"],
+    enum: ["kilogram", "litre", "gram", "piece"],
   },
 });
 

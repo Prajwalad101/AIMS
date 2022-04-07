@@ -10,6 +10,7 @@ const unitData = [
   { name: "kilogram", id: 1 },
   { name: "gram", id: 2 },
   { name: "litre", id: 3 },
+  { name: "piece", id: 4 },
 ];
 
 export default function UpdateProductModal({

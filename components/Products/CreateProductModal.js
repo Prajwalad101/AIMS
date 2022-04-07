@@ -155,6 +155,7 @@ export default function CreateProductModal({ open, setOpen, products }) {
                             <option value="Kilogram">Kilogram</option>
                             <option value="Gram">Gram</option>
                             <option value="Litre">Litre</option>
+                            <option value="Piece">Piece</option>
                           </select>
                         </div>
                       </div>

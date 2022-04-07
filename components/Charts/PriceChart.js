@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { chartOptions } from "../../utils/chartOptions";
+import useProducts from "../../hooks/products/useProducts";
 
 // register chart components
 ChartJS.register(
@@ -24,26 +25,29 @@ ChartJS.register(
 function PriceChart() {
   const options = chartOptions;
 
+  const { isLoading, isError, data: productData, error } = useProducts();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error</div>;
+  }
+
+  const products = productData?.data;
+
+  const productLabels = products.map((product) => product.name);
+  const productPrice = products.map((product) => product.marketPrice);
+
   const data = {
-    labels: [
-      "Milk (regular)",
-      "Loaf of Fresh White Bread",
-      "Rice (white)",
-      "Eggs (regular)",
-      "Local Cheese",
-      "Apples",
-      "Banana",
-      "Oranges",
-      "Tomato",
-      "Potato",
-      "Onion",
-    ],
+    labels: productLabels,
     datasets: [
       {
         label: "Price",
         backgroundColor: "hsl(252, 82.9%, 67.8%)",
         borderColor: "hsl(252, 82.9%, 67.8%)",
-        data: [85, 100, 66, 18, 700, 120, 80, 220, 50, 32.5, 46.5],
+        data: productPrice,
       },
     ],
   };
