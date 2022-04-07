@@ -7,11 +7,16 @@ import ProductsList from "../../components/Products/ProductsList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductDropdown from "../../components/UI/ProductDropdown";
+import UpdateProductModal from "../../components/Products/UpdateProductModal";
 
 function Products() {
   const [openModal, setOpenModal] = useState(false);
+
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [delProduct, setDelProduct] = useState(null);
+
+  const [openUpdateModal, setOpenUpdateModal] = useState(false);
+  const [updateProduct, setUpdateProduct] = useState(null);
 
   const { isLoading, isError, data, error } = useProducts();
 
@@ -23,6 +28,11 @@ function Products() {
   const delModalHandler = (product) => {
     setDelProduct(product);
     setOpenDeleteModal(true);
+  };
+
+  const updateModalHandler = (product) => {
+    setUpdateProduct(product);
+    setOpenUpdateModal(true);
   };
 
   return (
@@ -49,7 +59,11 @@ function Products() {
           </span>
         </button>
       </div>
-      <ProductsList products={products} delModalHandler={delModalHandler} />
+      <ProductsList
+        products={products}
+        delModalHandler={delModalHandler}
+        updateModalHandler={updateModalHandler}
+      />
       <CreateProductModal
         open={openModal}
         setOpen={setOpenModal}
@@ -59,6 +73,11 @@ function Products() {
         open={openDeleteModal}
         setOpen={setOpenDeleteModal}
         product={delProduct}
+      />
+      <UpdateProductModal
+        open={openUpdateModal}
+        setOpen={setOpenUpdateModal}
+        product={updateProduct}
       />
     </div>
   );

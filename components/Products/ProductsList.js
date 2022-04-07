@@ -3,7 +3,11 @@ import emptycart from "../../public/empty-cart.png";
 
 import ProductDropdown from "../UI/ProductDropdown";
 
-export default function ProductsList({ products, delModalHandler }) {
+export default function ProductsList({
+  products,
+  delModalHandler,
+  updateModalHandler,
+}) {
   if (products.length === 0) {
     return (
       <div className="flex items-center flex-col justify-center">
@@ -59,6 +63,7 @@ export default function ProductsList({ products, delModalHandler }) {
                 <ProductDropdown
                   product={product}
                   delModalHandler={delModalHandler}
+                  updateModalHandler={updateModalHandler}
                 />
               </td>
             </tr>

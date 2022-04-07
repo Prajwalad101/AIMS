@@ -9,7 +9,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductDropdown({ product, delModalHandler }) {
+export default function ProductDropdown({
+  product,
+  delModalHandler,
+  updateModalHandler,
+}) {
   return (
     <Menu as="div" className="fixed inline-block">
       <div className="fixed">
@@ -40,6 +44,7 @@ export default function ProductDropdown({ product, delModalHandler }) {
                     active ? "bg-gray-100 text-blue-800" : "text-gray-700",
                     "pl-3 py-2 text-sm flex items-center gap-6 hover:cursor-pointer"
                   )}
+                  onClick={() => updateModalHandler(product)}
                 >
                   <AiOutlineEdit size={18} />
                   Edit
