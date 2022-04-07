@@ -8,6 +8,12 @@ export const addToastNotify = () =>
     icon: <AiOutlineCheckSquare size={30} />,
   });
 
+export const updateToastNotify = () =>
+  toast.success("Item updated successfully", {
+    position: toast.POSITION.TOP_CENTER,
+    icon: <AiOutlineCheckSquare size={30} />,
+  });
+
 export const deleteToastNotify = () =>
   toast.error("Item deleted successfully", {
     position: toast.POSITION.TOP_CENTER,
