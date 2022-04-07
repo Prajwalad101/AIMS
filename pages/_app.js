@@ -11,11 +11,15 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider session={pageProps.session}>
-      <Auth loggedUser={user}>
-        <Layout user={user}>
-          <Component {...pageProps} user={user} />
-        </Layout>
-      </Auth>
+      {Component.auth === false ? (
+        <Component {...pageProps} />
+      ) : (
+        <Auth loggedUser={user}>
+          <Layout user={user}>
+            <Component {...pageProps} user={user} />
+          </Layout>
+        </Auth>
+      )}
     </Provider>
   );
 }
