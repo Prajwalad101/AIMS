@@ -13,6 +13,10 @@ const itemSchema = new mongoose.Schema({
     min: 1,
     max: 50000,
   },
+  addedBy: {
+    type: Object,
+    required: [true, "An item must have a submitter"],
+  },
 });
 
 const Item = mongoose.models.Item || mongoose.model("Item", itemSchema);
