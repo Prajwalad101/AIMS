@@ -73,7 +73,6 @@ function Products() {
         </button>
       </div>
       <ProductDataList
-        products={products}
         delModalHandler={delModalHandler}
         updateModalHandler={updateModalHandler}
         items={items}

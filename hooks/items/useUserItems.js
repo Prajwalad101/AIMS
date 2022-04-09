@@ -11,7 +11,7 @@ const getItemsByUser = async (userId) => {
 };
 
 function useUserItems(userId) {
-  return useQuery("items", () => getItemsByUser(userId));
+  return useQuery(["items", userId], () => getItemsByUser(userId));
 }
 
 export default useUserItems;

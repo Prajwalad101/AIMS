@@ -18,6 +18,7 @@ export default function InventoryInput({ numItems, setNumItems }) {
           className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md"
           placeholder="0"
           value={numItems}
+          min={1}
           onChange={handleNumChange}
         />
       </div>

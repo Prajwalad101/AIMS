@@ -21,13 +21,13 @@ async function handler(req, res) {
     } else {
       items = await Item.find({ "addedBy.id": userId });
     }
-
     return res.status(200).json({
       status: "success",
       data: items,
     });
   } else if (method === "POST") {
     const newItem = await Item.create(req.body);
+    console.log(newItem);
     return res.status(200).json({
       status: "success",
       data: newItem,
