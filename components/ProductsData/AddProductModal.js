@@ -1,15 +1,18 @@
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { useSession } from "next-auth/react";
 
 import { addToastNotify } from "../../utils/toastFunc";
 import SelectMenu from "./SelectMenu";
 import InventoryInput from "./InventoryInput";
 import useCreateItem from "../../hooks/items/useCreateItem";
+import { checkifItemsValid, checkIfValid } from "../../utils/productData";
 
-export default function AddProductModal({ open, setOpen, products }) {
+export default function AddProductModal({ open, setOpen, products, items }) {
+  const { data: session, status } = useSession();
   const cancelButtonRef = useRef(null);
 
-  // const [isValid, setIsValid] = useState(null);
+  const [isValid, setIsValid] = useState(null);
 
   const [item, setItem] = useState(products[0]);
   const [numItems, setNumItems] = useState(0);
@@ -18,14 +21,14 @@ export default function AddProductModal({ open, setOpen, products }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const valid = checkIfValid(products, productName);
-    // setIsValid(valid);
+    const valid = checkifItemsValid(items, item);
+    setIsValid(valid);
 
     // check if the name is valid
-    // if (valid === false) return;
+    if (valid === false) return;
 
     mutation.mutate(
-      { item, numItems: Number(numItems) },
+      { item, numItems: Number(numItems), addedBy: session.user },
       {
         onSuccess: () => {
           setOpen(false);
@@ -91,6 +94,7 @@ export default function AddProductModal({ open, setOpen, products }) {
                             item={item}
                             setItem={setItem}
                             productData={products}
+                            isValid={isValid}
                           />
                         </div>
 

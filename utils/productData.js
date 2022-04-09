@@ -8,3 +8,16 @@ export const checkIfValid = (products, productName) => {
   });
   return isValid;
 };
+
+export const checkifItemsValid = (items, product) => {
+  let isValid = true;
+
+  items.forEach((item) => {
+    if (item.item.name.toLowerCase() === product.name.toLowerCase()) {
+      isValid = false;
+      return;
+    }
+  });
+
+  return isValid;
+};

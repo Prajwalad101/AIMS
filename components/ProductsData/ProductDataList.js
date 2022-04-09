@@ -8,6 +8,7 @@ export default function UserProductsList({
   // products,
   delModalHandler,
   updateModalHandler,
+  items: products,
 }) {
   const { isLoading, isError, data, error } = useItems();
 
@@ -18,8 +19,6 @@ export default function UserProductsList({
   if (isError) {
     return <div>Error</div>;
   }
-
-  const products = data?.data;
 
   const checkPlural = (items, name) => {
     if (Number(items) === 0 || Number(items) > 1) {
@@ -36,7 +35,7 @@ export default function UserProductsList({
           No Products found!
         </h1>
         <p className="text-gray-600">
-          Create products using the button on the top-right corner{" "}
+          Add products using the button on the top-right corner{" "}
         </p>
       </div>
     );
