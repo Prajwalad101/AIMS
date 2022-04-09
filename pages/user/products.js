@@ -25,7 +25,7 @@ function Products() {
 
   return (
     <div className="w-full ml-5 mt-5">
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between font-poppins">
         <p className="text-xl font-ibm text-gray-700 font-medium">Products</p>
         <button
           className="relative inline-flex items-center justify-center p-0.5 mr-2 mb-5 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br bg-blue-600 hover:bg-blue-500 hover:shadow-md transition-all focus:ring-4 focus:outline-none focus:ring-blue-300"

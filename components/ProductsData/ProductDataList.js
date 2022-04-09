@@ -1,13 +1,33 @@
 import Image from "next/image";
+import useItems from "../../hooks/items/useItems";
 import emptycart from "../../public/empty-cart.png";
 
 import ProductDropdown from "../UI/ProductDropdown";
 
 export default function UserProductsList({
-  products,
+  // products,
   delModalHandler,
   updateModalHandler,
 }) {
+  const { isLoading, isError, data, error } = useItems();
+
+  if (isLoading) {
+    return null;
+  }
+
+  if (isError) {
+    return <div>Error</div>;
+  }
+
+  const products = data?.data;
+
+  const checkPlural = (items, name) => {
+    if (Number(items) === 0 || Number(items) > 1) {
+      return `${items} ${name}s`;
+    }
+    return name;
+  };
+
   if (products.length === 0) {
     return (
       <div className="flex items-center flex-col justify-center">
@@ -32,6 +52,9 @@ export default function UserProductsList({
             <th scope="col" className="px-6 py-3 ">
               Type
             </th>
+            <th scope="col" className="px-6 py-3 ">
+              No. Items
+            </th>
             <th scope="col" className="px-6 py-3">
               Market Price
             </th>
@@ -52,12 +75,15 @@ export default function UserProductsList({
                 className="px-6 py-4 font-medium whitespace-nowrap "
               >
                 <div className="flex gap-2 items-center">
-                  <p className="capitalize">{product.name}</p>
+                  <p className="capitalize">{product.item.name}</p>
                 </div>
               </th>
-              <td className="px-6 py-4 capitalize">{product.type}</td>
+              <td className="px-6 py-4 capitalize">{product.item.type}</td>
               <td className="px-6 py-4">
-                {product.marketPrice} per {product.unit}
+                {checkPlural(product.numItems, product.unit)}
+              </td>
+              <td className="px-6 py-4">
+                {product.item.marketPrice} per {product.item.unit}
               </td>
               <td className="py-4 mr-10 flex justify-end">
                 <ProductDropdown
