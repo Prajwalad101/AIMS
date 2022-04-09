@@ -7,14 +7,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function SelectMenu({ productData }) {
-  const products = productData.map((product) => ({
-    id: product._id,
-    name: product.name,
-  }));
-
-  const [selected, setSelected] = useState(products[3]);
-
+export default function SelectMenu({
+  item: selected,
+  setItem: setSelected,
+  productData,
+}) {
   return (
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
@@ -50,9 +47,9 @@ export default function SelectMenu({ productData }) {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-[150px] rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-                {products.map((product) => (
+                {productData.map((product) => (
                   <Listbox.Option
-                    key={product.id}
+                    key={product._id}
                     className={({ active }) =>
                       classNames(
                         active ? "text-white bg-indigo-600" : "text-gray-900",
