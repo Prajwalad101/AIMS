@@ -11,8 +11,9 @@ import Item from "../../../models/itemModel";
 
 async function handler(req, res) {
   await dbConnect();
+
   const { method } = req;
-  const { userId } = req.query;
+  const { itemId } = req.query;
 
   if (method === "GET") {
     const items = await Item.find({ "addedBy.id": userId });
