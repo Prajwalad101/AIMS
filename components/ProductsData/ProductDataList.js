@@ -4,7 +4,7 @@ import emptycart from "../../public/empty-cart.png";
 
 import ProductDropdown from "../UI/ProductDropdown";
 
-export default function UserProductsList({
+export default function ProductDataList({
   // products,
   delModalHandler,
   updateModalHandler,

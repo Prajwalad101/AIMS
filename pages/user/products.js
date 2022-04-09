@@ -2,13 +2,20 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import AddProductModal from "../../components/ProductsData/AddProductModal";
 
-import UserProductsList from "../../components/ProductsData/ProductDataList";
+import ProductDataList from "../../components/ProductsData/ProductDataList";
 import useProducts from "../../hooks/products/useProducts";
-import useItem from "../../hooks/items/useItem";
+import DeleteItemModal from "../../components/ProductsData/DeleteItemModal";
+import useUserItems from "../../hooks/items/useUserItems";
 
 function Products() {
   const { data: session, status } = useSession();
   const [openModal, setOpenModal] = useState(false);
+
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [delItem, setDelItem] = useState(null);
+
+  const [openUpdateModal, setOpenUpdateModal] = useState(false);
+  const [updateItem, setUpdateItem] = useState(null);
 
   const { isLoading, isError, data, error } = useProducts();
 
@@ -17,7 +24,7 @@ function Products() {
     isItemsError,
     data: itemsData,
     itemsError,
-  } = useItem(session.user.id);
+  } = useUserItems(session.user.id);
 
   if (isLoading || isItemsLoading) {
     return <div>Loading products....</div>;
@@ -27,17 +34,35 @@ function Products() {
     return <div>Error</div>;
   }
 
-  const delModalHandler = () => {};
+  const delModalHandler = (item) => {
+    setDelItem(item);
+    setOpenDeleteModal(true);
+  };
 
-  const updateModalHandler = () => {};
+  const updateModalHandler = (item) => {
+    setUpdateItem(item);
+    setOpenUpdateModal(true);
+  };
 
   const products = data?.data;
   const items = itemsData?.data;
 
+  if (!items) return null;
+
   return (
-    <div className="w-full ml-5 mt-5">
-      <div className="flex items-start justify-between font-poppins">
-        <p className="text-xl font-ibm text-gray-700 font-medium">Items</p>
+    <div className="w-full ml-5 mt-5 font-poppins">
+      {/* <ToastContainer
+        autoClose={2000}
+        pauseOnFocusLoss={false}
+        bodyClassName="font-poppins text-sm"
+      /> */}
+      <div className="flex items-start justify-between">
+        {items.length !== 0 && (
+          <h1 className="text-[22px] font-medium font-ibm mb-5 text-gray-600">
+            Available Products
+          </h1>
+        )}
+        <hr />
         <button
           className="relative inline-flex items-center justify-center p-0.5 mr-2 mb-5 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br bg-blue-600 hover:bg-blue-500 hover:shadow-md transition-all focus:ring-4 focus:outline-none focus:ring-blue-300"
           onClick={() => setOpenModal(true)}
@@ -47,7 +72,7 @@ function Products() {
           </span>
         </button>
       </div>
-      <UserProductsList
+      <ProductDataList
         products={products}
         delModalHandler={delModalHandler}
         updateModalHandler={updateModalHandler}
@@ -59,6 +84,17 @@ function Products() {
         products={products}
         items={items}
       />
+      <DeleteItemModal
+        open={openDeleteModal}
+        setOpen={setOpenDeleteModal}
+        product={delItem}
+      />
+      {/* <UpdateProductModal
+        open={openUpdateModal}
+        setOpen={setOpenUpdateModal}
+        product={updateProduct}
+        products={products}
+      /> */}
     </div>
   );
 }

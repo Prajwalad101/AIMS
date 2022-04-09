@@ -15,13 +15,9 @@ async function handler(req, res) {
   const { method } = req;
   const { itemId } = req.query;
 
-  if (method === "GET") {
-    const items = await Item.find({ "addedBy.id": userId });
-
-    return res.status(200).json({
-      status: "success",
-      data: items,
-    });
+  if (method === "DELETE") {
+    const items = await Item.findByIdAndDelete(itemId);
+    return res.status(204).json();
   } else {
     const err = new AppError(`No route found for ${req.url}`, 404);
     return globalErrorHandler(err, req, res);

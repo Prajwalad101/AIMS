@@ -20,7 +20,7 @@ function useDeleteItem() {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["items"]);
+        queryClient.invalidateQueries("items");
       },
     }
   );
