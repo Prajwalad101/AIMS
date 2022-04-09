@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 
 const getItemById = async (userId) => {
-  const res = await fetch(`/api/items/${userId}`);
+  const res = await fetch(`/api/items?${userId}`);
 
   if (!res.ok) {
     throw new Error("Could not fetch item", 404);

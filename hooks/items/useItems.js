@@ -11,7 +11,7 @@ const getItems = async () => {
 };
 
 function useItems() {
-  return useQuery("items", getItems);
+  return useQuery("items", getItems());
 }
 
 export default useItems;
