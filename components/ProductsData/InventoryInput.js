@@ -1,8 +1,9 @@
-import { useState } from "react";
-
-export default function InventoryInput() {
-  const [numItems, setNumItems] = useState(0);
-
+export default function InventoryInput({
+  numItems,
+  setNumItems,
+  unit,
+  setUnit,
+}) {
   const checkPlural = (name) => {
     if (numItems == 0 || numItems > 1) {
       return name + "s";
@@ -34,11 +35,15 @@ export default function InventoryInput() {
         />
         <div className="absolute inset-y-0 right-0 flex items-center">
           <label className="sr-only">Unit</label>
-          <select className="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md">
-            <option>{checkPlural("Kilogram")}</option>
-            <option>{checkPlural("Gram")}</option>
-            <option>{checkPlural("Litre")}</option>
-            <option>{checkPlural("Piece")}</option>
+          <select
+            className="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
+            value={unit}
+            onChange={(e) => setUnit(e.target.value)}
+          >
+            <option value="kilogram">{checkPlural("Kilogram")}</option>
+            <option value="gram">{checkPlural("Gram")}</option>
+            <option value="litre">{checkPlural("Litre")}</option>
+            <option value="piece">{checkPlural("Piece")}</option>
           </select>
         </div>
       </div>
