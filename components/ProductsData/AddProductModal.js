@@ -13,7 +13,6 @@ export default function AddProductModal({ open, setOpen, products }) {
 
   const [item, setItem] = useState(products[0]);
   const [numItems, setNumItems] = useState(0);
-  const [unit, setUnit] = useState("Kilogram");
 
   const mutation = useCreateItem();
 
@@ -26,7 +25,7 @@ export default function AddProductModal({ open, setOpen, products }) {
     // if (valid === false) return;
 
     mutation.mutate(
-      { item, numItems: Number(numItems), unit },
+      { item, numItems: Number(numItems) },
       {
         onSuccess: () => {
           setOpen(false);
@@ -100,8 +99,6 @@ export default function AddProductModal({ open, setOpen, products }) {
                           <InventoryInput
                             numItems={numItems}
                             setNumItems={setNumItems}
-                            unit={unit}
-                            setUnit={setUnit}
                           />
                         </div>
                       </div>

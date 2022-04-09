@@ -80,7 +80,7 @@ export default function UserProductsList({
               </th>
               <td className="px-6 py-4 capitalize">{product.item.type}</td>
               <td className="px-6 py-4">
-                {checkPlural(product.numItems, product.unit)}
+                {checkPlural(product.numItems, product.item.unit)}
               </td>
               <td className="px-6 py-4">
                 {product.item.marketPrice} per {product.item.unit}

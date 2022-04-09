@@ -13,12 +13,6 @@ const itemSchema = new mongoose.Schema({
     min: 1,
     max: 50000,
   },
-  unit: {
-    type: String,
-    required: [true, "An item must have a unit"],
-    lowercase: true,
-    enum: ["kilogram", "gram", "litre", "piece"],
-  },
 });
 
 const Item = mongoose.models.Item || mongoose.model("Item", itemSchema);
