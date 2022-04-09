@@ -1,45 +1,39 @@
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-import { checkIfValid } from "../../utils/productData";
-import useCreateProduct from "../../hooks/products/useCreateProduct";
 import { addToastNotify } from "../../utils/toastFunc";
 import SelectMenu from "./SelectMenu";
 import InventoryInput from "./InventoryInput";
+import useCreateItem from "../../hooks/items/useCreateItem";
 
 export default function AddProductModal({ open, setOpen, products }) {
   const cancelButtonRef = useRef(null);
 
-  const [productName, setProductName] = useState("");
-  const [productType, setProductType] = useState("");
-  const [marketPrice, setMarketPrice] = useState("");
+  // const [isValid, setIsValid] = useState(null);
+
+  const [item, setItem] = useState(products[0]);
+  const [numItems, setNumItems] = useState(0);
   const [unit, setUnit] = useState("Kilogram");
 
-  const [isValid, setIsValid] = useState(null);
-
-  const mutation = useCreateProduct();
+  const mutation = useCreateItem();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const valid = checkIfValid(products, productName);
-    setIsValid(valid);
+    // const valid = checkIfValid(products, productName);
+    // setIsValid(valid);
 
     // check if the name is valid
-    if (valid === false) return;
+    // if (valid === false) return;
 
-    const product = {
-      name: productName,
-      type: productType,
-      marketPrice,
-      unit,
-    };
-
-    mutation.mutate(product, {
-      onSuccess: () => {
-        setOpen(false);
-        addToastNotify();
-      },
-    });
+    mutation.mutate(
+      { item, numItems: Number(numItems), unit },
+      {
+        onSuccess: () => {
+          setOpen(false);
+          addToastNotify();
+        },
+      }
+    );
   };
 
   return (
@@ -94,12 +88,21 @@ export default function AddProductModal({ open, setOpen, products }) {
                       <div className="mb-6 mt-5 font-poppins flex flex-col gap-4">
                         {/* Products */}
                         <div>
-                          <SelectMenu productData={products} />
+                          <SelectMenu
+                            item={item}
+                            setItem={setItem}
+                            productData={products}
+                          />
                         </div>
 
                         {/* No of items */}
                         <div>
-                          <InventoryInput />
+                          <InventoryInput
+                            numItems={numItems}
+                            setNumItems={setNumItems}
+                            unit={unit}
+                            setUnit={setUnit}
+                          />
                         </div>
                       </div>
                     </div>
