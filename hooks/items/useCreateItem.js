@@ -5,7 +5,6 @@ function useCreateItem() {
 
   const mutation = useMutation(
     async (newItem) => {
-      console.log(newItem);
       const res = await fetch("/api/items", {
         method: "POST",
         headers: {
