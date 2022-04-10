@@ -29,16 +29,9 @@ function Dashboard() {
 
   return (
     <div className="w-full mx-5 mt-5">
-      <div className="flex items-center gap-10">
-        <h1 className="font-ibm text-[25px] font-medium text-gray-700">
-          Welcome, {userName}
-        </h1>
-        <div className="flex gap-3 items-center font-poppins">
-          {/* <span className="bg-blue-100 text-blue-800 text-sm mr-2 px-3 py-1 rounded capitalize">
-            {verificationStatus}
-          </span> */}
-        </div>
-      </div>
+      <h1 className="font-ibm text-[25px] font-medium text-gray-700">
+        Welcome, {userName}
+      </h1>
       <Tabs selectedChart={selectedChart} setSelectedChart={setSelectedChart} />
       <div className="w-[95%]">
         {selectedChart === "crops" && <CropsChart />}

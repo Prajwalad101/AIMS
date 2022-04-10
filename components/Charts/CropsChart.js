@@ -21,7 +21,7 @@ ChartJS.register(
   Legend
 );
 
-function CropsChart() {
+function CropsChart({ width }) {
   const options = chartOptions;
 
   const data = {
@@ -48,7 +48,7 @@ function CropsChart() {
       },
     ],
   };
-  return <Bar data={data} options={options}></Bar>;
+  return <Bar data={data} options={options} width={width}></Bar>;
 }
 
 export default CropsChart;

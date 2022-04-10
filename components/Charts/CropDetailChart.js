@@ -49,7 +49,7 @@ function CropDetailChart() {
   };
 
   return (
-    <div className="w-[50%]">
+    <div className="w-[60%]">
       <Pie data={data} options={options} />
     </div>
   );

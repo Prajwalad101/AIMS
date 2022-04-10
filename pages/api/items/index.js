@@ -27,7 +27,6 @@ async function handler(req, res) {
     });
   } else if (method === "POST") {
     const newItem = await Item.create(req.body);
-    console.log(newItem);
     return res.status(200).json({
       status: "success",
       data: newItem,
