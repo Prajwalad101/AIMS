@@ -1,19 +1,20 @@
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import CropDetailChart from "../../components/Charts/CropDetailChart";
-import CropsChart from "../../components/Charts/CropsChart";
-import PriceChart from "../../components/Charts/PriceChart";
-import UsersChart from "../../components/Charts/UsersChart";
-import Card from "../../components/Dashboard/CropInfoCard";
-import SelectChartTab from "../../components/Dashboard/SelectChartTab";
-import VerifiedCard from "../../components/Dashboard/VerifiedCard";
-import Tabs from "../../components/Tabs";
+
+// functions
 import useUserItems from "../../hooks/items/useUserItems";
 import useUser from "../../hooks/users/useUser";
 import { getItemsByMonth } from "../../utils/chartFunc";
 
+// components
+import CropsChart from "../../components/Charts/CropsChart";
+import FarmerPriceChart from "../../components/Charts/FarmerPriceChart";
+import Card from "../../components/Dashboard/CropInfoCard";
+import SelectChartTab from "../../components/Dashboard/SelectChartTab";
+import VerifiedCard from "../../components/Dashboard/VerifiedCard";
+
 function Dashboard() {
-  const { data: userSession, status } = useSession();
+  const { data: userSession } = useSession();
 
   const [selectedChart, setSelectedChart] = useState("crops");
 
@@ -60,7 +61,9 @@ function Dashboard() {
           {selectedChart === "crops" && (
             <CropsChart width={420} cropData={filteredItems} />
           )}
-          {selectedChart === "price" && <PriceChart width={420} />}
+          {selectedChart === "price" && (
+            <FarmerPriceChart width={420} items={items} />
+          )}
         </div>
       </div>
     </div>
