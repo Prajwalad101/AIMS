@@ -21,7 +21,7 @@ ChartJS.register(
   Legend
 );
 
-function CropsChart({ width }) {
+function CropsChart({ width, cropData }) {
   const options = chartOptions;
 
   const data = {
@@ -44,7 +44,8 @@ function CropsChart({ width }) {
         label: "Crops Added",
         backgroundColor: "hsl(252, 82.9%, 67.8%)",
         borderColor: "hsl(252, 82.9%, 67.8%)",
-        data: [10, 30, 5, 10, 5, 35, 70, 10, 13, 28, 40],
+        // data: [10, 30, 5, 10, 5, 35, 70, 10, 13, 28, 40],
+        data: cropData,
       },
     ],
   };

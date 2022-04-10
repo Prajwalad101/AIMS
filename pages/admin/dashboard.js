@@ -21,7 +21,6 @@ function Dashboard() {
   }
 
   const userData = data?.data;
-  const verificationStatus = userData.isVerified;
 
   let userName = userData.name;
   userName = userName.split(" ");

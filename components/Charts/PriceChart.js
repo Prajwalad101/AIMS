@@ -22,7 +22,7 @@ ChartJS.register(
   Legend
 );
 
-function PriceChart() {
+function PriceChart({ width }) {
   const options = chartOptions;
 
   const { isLoading, isError, data: productData, error } = useProducts();
@@ -51,7 +51,7 @@ function PriceChart() {
       },
     ],
   };
-  return <Bar data={data} options={options}></Bar>;
+  return <Bar data={data} options={options} width={width}></Bar>;
 }
 
 export default PriceChart;

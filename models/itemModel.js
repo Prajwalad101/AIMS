@@ -2,22 +2,25 @@ import mongoose from "mongoose";
 
 import { productSchema } from "./productModel";
 
-const itemSchema = new mongoose.Schema({
-  item: {
-    type: productSchema,
-    required: [true, "An item must have a product"],
+const itemSchema = new mongoose.Schema(
+  {
+    item: {
+      type: productSchema,
+      required: [true, "An item must have a product"],
+    },
+    numItems: {
+      type: Number,
+      required: [true, "An item must have a number"],
+      min: 1,
+      max: 50000,
+    },
+    addedBy: {
+      type: Object,
+      required: [true, "An item must have a submitter"],
+    },
   },
-  numItems: {
-    type: Number,
-    required: [true, "An item must have a number"],
-    min: 1,
-    max: 50000,
-  },
-  addedBy: {
-    type: Object,
-    required: [true, "An item must have a submitter"],
-  },
-});
+  { timestamps: true }
+);
 
 const Item = mongoose.models.Item || mongoose.model("Item", itemSchema);
 
