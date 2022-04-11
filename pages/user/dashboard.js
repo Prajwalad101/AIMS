@@ -11,16 +11,17 @@ import CropsChart from "../../components/Charts/CropsChart";
 import FarmerPriceChart from "../../components/Charts/FarmerPriceChart";
 import Card from "../../components/Dashboard/CropInfoCard";
 import SelectChartTab from "../../components/Dashboard/SelectChartTab";
-import VerifiedCard from "../../components/Dashboard/VerifiedCard";
 
 function Dashboard() {
   const { data: userSession } = useSession();
 
+  // used by the tab component to select a specific chart
   const [selectedChart, setSelectedChart] = useState("crops");
 
   const id = userSession.user.id;
   const { isLoading, isError, error, data } = useUser(id);
 
+  // gets items data for the specific user
   const {
     isLoading: isItemsLoading,
     isError: isItemsError,
@@ -48,8 +49,9 @@ function Dashboard() {
         Welcome, {userName}
       </h1>
       <div className="flex gap-14 mb-8">
-        <Card numCrops={items.length} />
-        <VerifiedCard status={verificationStatus} />
+        <Card items={items} type={"product"} />
+        <Card items={items} type={"price"} />
+        <Card items={items} status={verificationStatus} type={"status"} />
       </div>
 
       <div className="w-full">
