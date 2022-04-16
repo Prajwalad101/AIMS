@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 export default function InventoryList({ items }) {
-  console.log(items[0]);
   return (
     <div className="relative overflow-x-auto overflow-y-auto shadow-md rounded-sm w-full grow">
       <table className="w-full text-sm text-left">
