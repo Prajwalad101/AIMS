@@ -5,7 +5,7 @@ import UserModal from "../components/UserModal";
 import useUsers from "../hooks/users/useUsers";
 import nodata from "../public/no-data.png";
 
-function Users() {
+function Applications() {
   const { isLoading, isError, data, error } = useUsers();
 
   let users = data?.data;
@@ -117,4 +117,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default Applications;

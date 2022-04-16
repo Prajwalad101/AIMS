@@ -40,13 +40,13 @@ export const adminSidebarData = [
   {
     title: "Applications",
     id: "2",
-    url: "/users",
+    url: "/applications",
     icon: <BsFillPersonLinesFill size={20} />,
   },
   {
-    title: "Inbox",
+    title: "Inventory",
     id: "3",
-    url: "/inbox",
+    url: "/inventory",
     icon: <RiInboxUnarchiveLine size={20} />,
   },
   {
