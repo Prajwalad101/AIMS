@@ -26,8 +26,14 @@ export default NextAuth({
     colorScheme: "light",
   },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
+    async session({ session, token }) {
+      session.user.id = token.sub;
+      return session;
+    },
+  },
+  events: {
+    async signIn(message) {
+      if (message.isNewUser) {
         const client = await clientPromise;
         const usersCollection = client.db().collection("users");
 
@@ -38,11 +44,6 @@ export default NextAuth({
           }
         );
       }
-      return token;
-    },
-    async session({ session, token }) {
-      session.user.id = token.sub;
-      return session;
     },
   },
   pages: {
