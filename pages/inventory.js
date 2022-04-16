@@ -26,8 +26,10 @@ export default function Inventory() {
 
   const headers = [
     { label: "Product", key: "product" },
-    { label: "Owner", key: "owner" },
+    { label: "AddedBy", key: "addedBy" },
+    { label: "Email", key: "email" },
     { label: "Volume", key: "volume" },
+    { label: "Unit", key: "unit" },
     { label: "MarketPrice", key: "marketPrice" },
     { label: "TotalPrice", key: "totalPrice" },
     { label: "CreatedAt", key: "createdAt" },
@@ -38,8 +40,10 @@ export default function Inventory() {
     const date = getFormattedDate(item.createdAt);
     return {
       product: item.item.name,
-      owner: item.addedBy.name,
+      addedBy: item.addedBy.name,
+      email: item.addedBy.email,
       volume: item.numItems,
+      unit: item.item.unit,
       marketPrice: item.item.marketPrice,
       totalPrice: totalPrice,
       createdAt: date,
