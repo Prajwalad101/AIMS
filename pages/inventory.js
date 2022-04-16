@@ -1,11 +1,14 @@
-import { CSVLink, CSVDownload } from "react-csv";
+import { useState } from "react";
 import { getFormattedDate } from "../utils/utility";
 
 // components
+import { CSVLink } from "react-csv";
 import InventoryList from "../components/Inventory/InventoryList";
 import useItems from "../hooks/items/useItems";
+import InventoryModal from "../components/Inventory/InventoryModal";
 
 export default function Inventory() {
+  const [openModal, setOpenModal] = useState(false);
   const { isLoading, isError, data, error } = useItems();
 
   if (isLoading) {
@@ -44,6 +47,7 @@ export default function Inventory() {
 
   return (
     <div className="mx-5 mt-4 w-full font-poppins">
+      <InventoryModal open={openModal} setOpen={setOpenModal} />
       <div className="flex items-center justify-between mb-5">
         <h1 className="text-[22px] font-medium font-ibm mb-5 text-gray-600">
           Inventory
@@ -65,7 +69,7 @@ export default function Inventory() {
           </button>
         </div>
       </div>
-      <InventoryList items={items} />
+      <InventoryList items={items} setOpen={setOpenModal} />
     </div>
   );
 }

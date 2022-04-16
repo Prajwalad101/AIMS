@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function InventoryList({ items }) {
+export default function InventoryList({ items, setOpen }) {
   return (
     <div className="relative overflow-x-auto overflow-y-auto shadow-md rounded-sm w-full grow">
       <table className="w-full text-sm text-left">
@@ -30,8 +30,9 @@ export default function InventoryList({ items }) {
         <tbody>
           {items.map((item) => (
             <tr
-              className="border-b hover:bg-gray-50 text-[15px]"
+              className="border-b hover:bg-gray-50 text-[15px] hover:cursor-pointer"
               key={item._id}
+              onClick={() => setOpen(true)}
             >
               <th
                 scope="row"
