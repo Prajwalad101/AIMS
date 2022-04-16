@@ -1,6 +1,8 @@
 import Image from "next/image";
 
-export default function InventoryList({ items, setOpen }) {
+import { checkPlural } from "../../utils/utility";
+
+export default function InventoryList({ items, setOpen, setActiveItem }) {
   return (
     <div className="relative overflow-x-auto overflow-y-auto shadow-md rounded-sm w-full grow">
       <table className="w-full text-sm text-left">
@@ -32,14 +34,17 @@ export default function InventoryList({ items, setOpen }) {
             <tr
               className="border-b hover:bg-gray-50 text-[15px] hover:cursor-pointer"
               key={item._id}
-              onClick={() => setOpen(true)}
+              onClick={() => {
+                setActiveItem(item);
+                setOpen(true);
+              }}
             >
               <th
                 scope="row"
                 className="px-6 py-4 font-medium whitespace-nowrap "
               >
                 <div className="flex gap-2 items-center">
-                  <p className="capitalize">Maize</p>
+                  <p className="capitalize">{item.item.name}</p>
                 </div>
               </th>
               <td className="px-6 py-4 capitalize">
@@ -54,9 +59,11 @@ export default function InventoryList({ items, setOpen }) {
                   {item.addedBy.name}
                 </div>
               </td>
-              <td className="px-6 py-4">{item.numItems}</td>
+              <td className="px-6 py-4">
+                {item.numItems} {checkPlural(item.item.unit, item.numItems)}
+              </td>
               <td className="px-6 py-4 text-gray-500">
-                Rs. {item.item.marketPrice}
+                Rs. {item.item.marketPrice} per {item.item.unit}
               </td>
               <td className="px-6 py-4">
                 Rs. {item.item.marketPrice * item.numItems}

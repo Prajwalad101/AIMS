@@ -22,3 +22,11 @@ export function getFormattedDate(createdAt) {
 
   return `${date} ${month} ${year}`;
 }
+
+export const checkPlural = (name, number) => {
+  if (Number(number) === 0 || Number(number) > 1) {
+    return name + "s";
+  } else {
+    return name;
+  }
+};

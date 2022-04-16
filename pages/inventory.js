@@ -9,6 +9,7 @@ import InventoryModal from "../components/Inventory/InventoryModal";
 
 export default function Inventory() {
   const [openModal, setOpenModal] = useState(false);
+  const [activeItem, setActiveItem] = useState(null);
   const { isLoading, isError, data, error } = useItems();
 
   if (isLoading) {
@@ -47,7 +48,11 @@ export default function Inventory() {
 
   return (
     <div className="mx-5 mt-4 w-full font-poppins">
-      <InventoryModal open={openModal} setOpen={setOpenModal} />
+      <InventoryModal
+        open={openModal}
+        setOpen={setOpenModal}
+        item={activeItem}
+      />
       <div className="flex items-center justify-between mb-5">
         <h1 className="text-[22px] font-medium font-ibm mb-5 text-gray-600">
           Inventory
@@ -69,7 +74,11 @@ export default function Inventory() {
           </button>
         </div>
       </div>
-      <InventoryList items={items} setOpen={setOpenModal} />
+      <InventoryList
+        items={items}
+        setOpen={setOpenModal}
+        setActiveItem={setActiveItem}
+      />
     </div>
   );
 }
