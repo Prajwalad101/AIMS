@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { useSession } from "next-auth/react";
 import { useReactToPrint } from "react-to-print";
 import { getFormattedDate, generatePDF } from "../utils/utility";
 
@@ -70,14 +69,6 @@ export default function Inventory() {
           Inventory
         </h1>
         <div>
-          <CSVLink data={csvData} headers={headers} filename={"inventory.csv"}>
-            <button
-              type="button"
-              className="text-white font-normal bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none "
-            >
-              Download (CSV)
-            </button>
-          </CSVLink>
           <button
             type="button"
             className="text-white font-normal bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
