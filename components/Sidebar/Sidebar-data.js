@@ -16,12 +16,12 @@ export const farmerSidebarData = [
     url: "/personal-info",
     icon: <BsFillPersonLinesFill size={20} />,
   },
-  {
-    title: "Inbox",
-    id: "3",
-    url: "/inbox",
-    icon: <RiInboxUnarchiveLine size={20} />,
-  },
+  // {
+  //   title: "Inbox",
+  //   id: "3",
+  //   url: "/inbox",
+  //   icon: <RiInboxUnarchiveLine size={20} />,
+  // },
   {
     title: "Products",
     id: "4",

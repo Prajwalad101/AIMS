@@ -1,10 +1,15 @@
 import Image from "next/image";
+import React from "react";
 
 import { checkPlural } from "../../utils/utility";
 
-export default function InventoryList({ items, setOpen, setActiveItem }) {
+const InventoryList = React.forwardRef((props, ref) => {
+  const { items, setOpen, setActiveItem } = props;
   return (
-    <div className="relative overflow-x-auto overflow-y-auto shadow-md rounded-sm w-full grow">
+    <div
+      className="relative overflow-x-auto overflow-y-auto shadow-md rounded-sm w-full grow"
+      ref={ref}
+    >
       <table className="w-full text-sm text-left">
         <thead className="text-[14px] text-gray-400 font-ibm uppercase bg-gray-100">
           <tr>
@@ -76,4 +81,8 @@ export default function InventoryList({ items, setOpen, setActiveItem }) {
       </table>
     </div>
   );
-}
+});
+
+InventoryList.displayName = "InventoryList";
+
+export default InventoryList;

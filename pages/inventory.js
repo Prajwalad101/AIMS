@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { getFormattedDate } from "../utils/utility";
+import { useState, useRef } from "react";
+import { useSession } from "next-auth/react";
+import { useReactToPrint } from "react-to-print";
+import { getFormattedDate, generatePDF } from "../utils/utility";
 
 // components
 import { CSVLink } from "react-csv";
@@ -11,6 +13,11 @@ export default function Inventory() {
   const [openModal, setOpenModal] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
   const { isLoading, isError, data, error } = useItems();
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   if (isLoading) {
     return <div>Loading items</div>;
@@ -52,6 +59,7 @@ export default function Inventory() {
 
   return (
     <div className="mx-5 mt-4 w-full font-poppins">
+      {/* <ComponentToPrint ref={componentRef} /> */}
       <InventoryModal
         open={openModal}
         setOpen={setOpenModal}
@@ -72,7 +80,8 @@ export default function Inventory() {
           </CSVLink>
           <button
             type="button"
-            className="text-white font-normal bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none "
+            className="text-white font-normal bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+            onClick={handlePrint}
           >
             Download (PDF)
           </button>
@@ -82,6 +91,7 @@ export default function Inventory() {
         items={items}
         setOpen={setOpenModal}
         setActiveItem={setActiveItem}
+        ref={componentRef}
       />
     </div>
   );
