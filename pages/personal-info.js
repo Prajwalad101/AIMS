@@ -6,6 +6,10 @@ import useUser from "../hooks/users/useUser";
 
 import { getDistricts } from "../utils/formData";
 import { useSession } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { applicationSubmitToastNotify } from "../utils/toastFunc";
 
 export default function PersonalInfo() {
   const { data: userSession, status } = useSession();
@@ -67,7 +71,8 @@ export default function PersonalInfo() {
       { userInfo, id },
       {
         onSuccess: () => {
-          router.push("/user/dashboard");
+          applicationSubmitToastNotify();
+          // router.push("/user/dashboard");
         },
       }
     );
@@ -81,6 +86,11 @@ export default function PersonalInfo() {
 
   return (
     <>
+      <ToastContainer
+        autoClose={2000}
+        pauseOnFocusLoss={false}
+        bodyClassName="font-poppins text-sm"
+      />
       <div className="font-poppins mx-5 mt-4">
         <div className="flex flex-col">
           <div className="mb-5">

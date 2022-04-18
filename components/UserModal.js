@@ -1,4 +1,5 @@
 import useValidateUser from "../hooks/users/useValidateUser";
+import { successToastNotify, errorToastNotify } from "../utils/toastFunc.js";
 
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
@@ -13,7 +14,7 @@ export default function UserModal({ open, setOpen, user }) {
       { userInfo: { isVerified: "verified" }, id: user._id },
       {
         onSuccess: () => {
-          console.log("User is verified");
+          successToastNotify("Successfully verified user");
         },
       }
     );
@@ -31,7 +32,7 @@ export default function UserModal({ open, setOpen, user }) {
 
       {
         onSuccess: () => {
-          console.log("User blocked");
+          errorToastNotify("Successfully blocked user");
         },
       }
     );

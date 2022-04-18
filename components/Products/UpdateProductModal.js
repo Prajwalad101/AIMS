@@ -26,17 +26,17 @@ export default function UpdateProductModal({
   const [marketPrice, setMarketPrice] = useState(null);
   const [unit, setUnit] = useState(null);
 
-  const [isValid, setIsValid] = useState(null);
+  // const [isValid, setIsValid] = useState(null);
 
   const mutation = useUpdateProduct(product?._id);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const valid = checkIfValid(products, productName);
-    setIsValid(valid);
+    // const valid = checkIfValid(products, productName);
+    // setIsValid(valid);
 
     // check if name is valid
-    if (valid === false) return;
+    // if (valid === false) return;
 
     const product = {
       name: productName,
@@ -115,13 +115,13 @@ export default function UpdateProductModal({
                         {/* Product Name Input */}
                         <label className="block mb-2 text-sm font-medium text-gray-900">
                           Product Name{" "}
-                          <span
+                          {/* <span
                             className={`font-medium text-red-500 ${
                               isValid === false ? "inline" : "hidden"
                             }`}
                           >
                             (Product already exists!)
-                          </span>
+                          </span> */}
                         </label>
 
                         <input

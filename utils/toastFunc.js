@@ -20,3 +20,35 @@ export const deleteToastNotify = () =>
     icon: <RiDeleteBin4Line size={30} />,
     className: "bg-blue-500",
   });
+
+export const verificationToastNotify = () =>
+  toast.error("You must be verified to add products", {
+    position: toast.POSITION.TOP_CENTER,
+    icon: <RiDeleteBin4Line size={30} />,
+    className: "bg-blue-500",
+  });
+
+export const applicationSubmitToastNotify = () =>
+  toast.success("Application submitted successfully", {
+    position: toast.POSITION.TOP_CENTER,
+    icon: <AiOutlineCheckSquare size={30} />,
+  });
+
+export const verifyUserToastNotify = () =>
+  toast.success("Verified User successfully", {
+    position: toast.POSITION.TOP_CENTER,
+    icon: <AiOutlineCheckSquare size={30} />,
+  });
+
+export const successToastNotify = (message) =>
+  toast.success(message, {
+    position: toast.POSITION.TOP_CENTER,
+    icon: <AiOutlineCheckSquare size={30} />,
+  });
+
+export const errorToastNotify = (message) =>
+  toast.error(message, {
+    position: toast.POSITION.TOP_CENTER,
+    // icon: <RiDeleteBin4Line size={30} />,
+    className: "bg-blue-500",
+  });

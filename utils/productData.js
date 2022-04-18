@@ -6,6 +6,7 @@ export const checkIfValid = (products, productName) => {
       return;
     }
   });
+  console.log(isValid);
   return isValid;
 };
 

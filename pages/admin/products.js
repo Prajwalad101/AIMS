@@ -36,11 +36,11 @@ function Products() {
 
   return (
     <div className="font-poppins mx-5 mt-4 w-full">
-      <ToastContainer
+      {/* <ToastContainer
         autoClose={2000}
         pauseOnFocusLoss={false}
         bodyClassName="font-poppins text-sm"
-      />
+      /> */}
       <div className="flex items-start justify-between">
         {products.length !== 0 && (
           <h1 className="text-[22px] font-medium font-ibm mb-5 text-gray-600">
