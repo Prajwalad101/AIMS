@@ -39,7 +39,7 @@ function Tabs({ selectedChart, setSelectedChart }) {
             Users
           </a>
         </li>
-        <li className="mr-2" onClick={() => setSelectedChart("crops-info")}>
+        {/* <li className="mr-2" onClick={() => setSelectedChart("crops-info")}>
           <a
             href="#"
             className={`inline-block p-4 rounded-t-lg ${
@@ -50,7 +50,7 @@ function Tabs({ selectedChart, setSelectedChart }) {
           >
             Crops Info
           </a>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

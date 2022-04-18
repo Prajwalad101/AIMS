@@ -1,22 +1,31 @@
 import { useState } from "react";
 
-import CropsChart from "../../components/Charts/CropsChart";
+import CropsChart from "../../components/Charts/Admin/CropsChart";
 import UsersChart from "../../components/Charts/UsersChart";
 import PriceChart from "../../components/Charts/PriceChart";
 import Tabs from "../../components/Tabs";
 import useUser from "../../hooks/users/useUser";
 import CropDetailChart from "../../components/Charts/CropDetailChart";
 import { useSession } from "next-auth/react";
+import useItems from "../../hooks/items/useItems";
 
 function Dashboard() {
   const { data: userSession, status } = useSession();
 
   const id = userSession.user.id;
   const { isLoading, isError, error, data } = useUser(id);
+  const {
+    isLoading: isItemsLoading,
+    isError: isItemsError,
+    error: itemsError,
+    data: itemsData,
+  } = useItems();
 
-  const [selectedChart, setSelectedChart] = useState("users");
+  const items = itemsData?.data;
 
-  if (isLoading) {
+  const [selectedChart, setSelectedChart] = useState("crops");
+
+  if (isLoading || isItemsLoading) {
     return <div>Loading...</div>;
   }
 
@@ -33,16 +42,16 @@ function Dashboard() {
       </h1>
       <Tabs selectedChart={selectedChart} setSelectedChart={setSelectedChart} />
       <div className="w-[95%]">
-        {selectedChart === "crops" && <CropsChart />}
+        {selectedChart === "crops" && <CropsChart items={items} />}
         {selectedChart === "users" && <UsersChart />}
         {selectedChart === "price" && <PriceChart />}
 
-        {selectedChart === "crops-info" && (
+        {/* {selectedChart === "crops-info" && (
           <div className="flex">
             <CropDetailChart />
             <CropDetailChart />
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
