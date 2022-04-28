@@ -8,6 +8,7 @@ import Layout from "../components/wrappers/Layout";
 
 function MyApp({ Component, pageProps }) {
   const user = useRef();
+  console.log("User", user);
 
   return (
     <Provider session={pageProps.session}>

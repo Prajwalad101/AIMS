@@ -5,6 +5,7 @@ import { farmerSidebarData, adminSidebarData } from "./Sidebar-data";
 import UserDropdown from "../UserDropdown";
 
 function Sidebar({ user }) {
+  console.log("User1", user);
   const router = useRouter();
   const url = router.pathname;
 
@@ -59,7 +60,7 @@ function Sidebar({ user }) {
             </li>
           ))}
         </ul>
-        <div className=" mt-8 ">
+        <div className="mt-8 ">
           <UserDropdown user={user} />
         </div>
       </div>

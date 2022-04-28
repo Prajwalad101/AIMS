@@ -12,7 +12,7 @@ function Tabs({ selectedChart, setSelectedChart }) {
                 : "hover:text-gray-600 hover:bg-gray-50"
             }`}
           >
-            Crops Added
+            Inventory
           </a>
         </li>
         <li className="mr-2" onClick={() => setSelectedChart("price")}>

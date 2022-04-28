@@ -10,11 +10,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { applicationSubmitToastNotify } from "../utils/toastFunc";
+import UserInfo from "../components/UserInfo";
 
 export default function PersonalInfo() {
-  const { data: userSession, status } = useSession();
+  const { data: userSession } = useSession();
 
-  const router = useRouter();
   const id = userSession.user.id;
   const email = userSession.user.email;
 
@@ -82,6 +82,14 @@ export default function PersonalInfo() {
     return <div>Loading user info...</div>;
   } else if (isError) {
     return <div>An unexpected error occurred: {error}</div>;
+  }
+
+  if (verifyStatus === "pending") {
+    return <div>Your application is in pending. Please be patient</div>;
+  }
+
+  if (verifyStatus === "verified") {
+    return <UserInfo user={data?.data} />;
   }
 
   return (

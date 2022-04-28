@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
-import { getFormattedDate, generatePDF } from "../utils/utility";
+import { getFormattedDate } from "../utils/utility";
 
 // components
 import { CSVLink } from "react-csv";

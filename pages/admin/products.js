@@ -4,8 +4,6 @@ import useProducts from "../../hooks/products/useProducts";
 import CreateProductModal from "../../components/Products/CreateProductModal";
 import DeleteProductModal from "../../components/Products/DeleteProductModal";
 import ProductsList from "../../components/Products/ProductsList";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import UpdateProductModal from "../../components/Products/UpdateProductModal";
 
 function Products() {
@@ -36,11 +34,6 @@ function Products() {
 
   return (
     <div className="font-poppins mx-5 mt-4 w-full">
-      {/* <ToastContainer
-        autoClose={2000}
-        pauseOnFocusLoss={false}
-        bodyClassName="font-poppins text-sm"
-      /> */}
       <div className="flex items-start justify-between">
         {products.length !== 0 && (
           <h1 className="text-[22px] font-medium font-ibm mb-5 text-gray-600">
