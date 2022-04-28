@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
 
-function useValidateUser() {
+function useValidateUser(id) {
   const queryClient = useQueryClient();
 
   // create a mutation
@@ -21,7 +21,7 @@ function useValidateUser() {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["users"]);
+        queryClient.invalidateQueries(["user", id]);
       },
     }
   );

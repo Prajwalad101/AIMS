@@ -11,7 +11,7 @@ const getUserFromId = async (userId) => {
 };
 
 function useUser(userId) {
-  return useQuery("user", () => getUserFromId(userId));
+  return useQuery(["user", userId], () => getUserFromId(userId));
 }
 
 export default useUser;

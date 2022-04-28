@@ -40,7 +40,7 @@ export default function PersonalInfo() {
   }, [districts]);
 
   // mutation object for adding user information
-  const mutation = useValidateUser();
+  const mutation = useValidateUser(id);
 
   useEffect(() => {
     verifyStatus !== "not-verified"

@@ -24,7 +24,10 @@ export default function UserInfo({ user }) {
             height={60}
             className="rounded-full"
           />
-          <span className="text-gray-600">{user.name}</span>
+          <div className="flex flex-col">
+            <span>{user.name}</span>
+            <span className="text-gray-600 text-[15px]">Verified</span>
+          </div>
         </div>
         <button
           type="button"
