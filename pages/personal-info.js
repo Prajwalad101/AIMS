@@ -10,7 +10,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { applicationSubmitToastNotify } from "../utils/toastFunc";
-import UserInfo from "../components/UserInfo";
+import UserInfo from "../components/UserProfile/UserInfo";
+import PendingApplication from "../components/UserProfile/PendingApplication";
 
 export default function PersonalInfo() {
   const { data: userSession } = useSession();
@@ -85,7 +86,7 @@ export default function PersonalInfo() {
   }
 
   if (verifyStatus === "pending") {
-    return <div>Your application is in pending. Please be patient</div>;
+    return <PendingApplication />;
   }
 
   if (verifyStatus === "verified") {
