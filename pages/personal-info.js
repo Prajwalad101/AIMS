@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { applicationSubmitToastNotify } from "../utils/toastFunc";
 import UserInfo from "../components/UserProfile/UserInfo";
 import PendingApplication from "../components/UserProfile/PendingApplication";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function PersonalInfo() {
   const { data: userSession } = useSession();
@@ -80,7 +81,7 @@ export default function PersonalInfo() {
   };
 
   if (isLoading) {
-    return <div>Loading user info...</div>;
+    return <LoadingSpinner />;
   } else if (isError) {
     return <div>An unexpected error occurred: {error}</div>;
   }

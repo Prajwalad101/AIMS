@@ -7,6 +7,7 @@ import { CSVLink } from "react-csv";
 import InventoryList from "../components/Inventory/InventoryList";
 import useItems from "../hooks/items/useItems";
 import InventoryModal from "../components/Inventory/InventoryModal";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function Inventory() {
   const [openModal, setOpenModal] = useState(false);
@@ -19,7 +20,7 @@ export default function Inventory() {
   });
 
   if (isLoading) {
-    return <div>Loading items</div>;
+    return <LoadingSpinner />;
   }
 
   if (isError) {

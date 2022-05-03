@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import useAdmin from "../../hooks/users/useAdmin";
+import LoadingSpinner from "../LoadingSpinner";
 
 function Auth({ children, loggedUser }) {
   const { data: session, status } = useSession({ required: true });
@@ -27,7 +28,7 @@ function Auth({ children, loggedUser }) {
     return children;
   }
 
-  return <div>Loading...</div>;
+  return <LoadingSpinner />;
 }
 
 export default Auth;

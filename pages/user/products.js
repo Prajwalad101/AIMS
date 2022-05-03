@@ -11,6 +11,7 @@ import useProducts from "../../hooks/products/useProducts";
 import DeleteItemModal from "../../components/ProductsData/DeleteItemModal";
 import useUserItems from "../../hooks/items/useUserItems";
 import useUser from "../../hooks/users/useUser";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function Products() {
   const { data: session, status } = useSession();
@@ -41,7 +42,7 @@ function Products() {
   } = useUserItems(session.user.id);
 
   if (isLoading || isItemsLoading || isUserLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (isError || isItemsError) {

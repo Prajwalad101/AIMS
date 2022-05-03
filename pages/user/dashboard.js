@@ -11,6 +11,7 @@ import CropsChart from "../../components/Charts/CropsChart";
 import FarmerPriceChart from "../../components/Charts/FarmerPriceChart";
 import Card from "../../components/Dashboard/CropInfoCard";
 import SelectChartTab from "../../components/Dashboard/SelectChartTab";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function Dashboard() {
   const { data: userSession } = useSession();
@@ -30,7 +31,7 @@ function Dashboard() {
   } = useUserItems(id);
 
   if (isLoading || isItemsLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   const items = itemsData?.data;

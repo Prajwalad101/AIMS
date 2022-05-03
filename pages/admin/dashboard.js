@@ -5,9 +5,9 @@ import UsersChart from "../../components/Charts/UsersChart";
 import PriceChart from "../../components/Charts/PriceChart";
 import Tabs from "../../components/Tabs";
 import useUser from "../../hooks/users/useUser";
-import CropDetailChart from "../../components/Charts/CropDetailChart";
 import { useSession } from "next-auth/react";
 import useItems from "../../hooks/items/useItems";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function Dashboard() {
   const { data: userSession, status } = useSession();
@@ -26,7 +26,7 @@ function Dashboard() {
   const [selectedChart, setSelectedChart] = useState("crops");
 
   if (isLoading || isItemsLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   const userData = data?.data;

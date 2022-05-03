@@ -5,6 +5,7 @@ import CreateProductModal from "../../components/Products/CreateProductModal";
 import DeleteProductModal from "../../components/Products/DeleteProductModal";
 import ProductsList from "../../components/Products/ProductsList";
 import UpdateProductModal from "../../components/Products/UpdateProductModal";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function Products() {
   const [openModal, setOpenModal] = useState(false);
@@ -17,7 +18,7 @@ function Products() {
 
   const { isLoading, isError, data, error } = useProducts();
 
-  if (isLoading) return <div>Loading products</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (isError) return <div>Error: {error}</div>;
 
   const products = data?.data;

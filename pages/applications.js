@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 import UserModal from "../components/UserModal";
 import useUsers from "../hooks/users/useUsers";
@@ -19,7 +20,7 @@ function Applications() {
   };
 
   if (isLoading) {
-    return <div>Loading users</div>;
+    return <LoadingSpinner />;
   }
 
   if (isError) {
