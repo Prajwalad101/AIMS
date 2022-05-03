@@ -40,12 +40,12 @@ function Applications() {
   }
 
   return (
-    <div className="font-poppins flex grow mx-3 flex-col">
+    <div className="font-poppins flex grow mx-5 flex-col w-full">
       <UserModal open={open} setOpen={setOpen} user={selectedUser} />
       <h1 className="text-2xl font-ibm font-medium py-3 pl-2 mb-2 text-gray-700">
         Applicants
       </h1>
-      <div className="relative overflow-x-auto shadow-md rounded-sm w-full">
+      <div className="relative overflow-x-auto shadow-md rounded-sm w-full grow">
         <table className="w-full text-sm text-left">
           <thead className="text-[14px] text-gray-400 font-ibm uppercase bg-gray-100">
             <tr>

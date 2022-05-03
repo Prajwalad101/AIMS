@@ -44,11 +44,11 @@ function Dashboard() {
 
   const filteredItems = getItemsByMonth(items);
   return (
-    <div className="w-full mt-5 ml-5">
+    <div className="w-full mt-5 mx-5">
       <h1 className="font-ibm text-[25px] font-medium text-gray-700 mb-5">
         Welcome, {userName}
       </h1>
-      <div className="flex gap-14 mb-8">
+      <div className="flex gap-5 sm:gap-14 mb-8 ">
         <Card items={items} type={"product"} />
         <Card items={items} type={"price"} />
         <Card items={items} status={verificationStatus} type={"status"} />

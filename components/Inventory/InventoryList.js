@@ -52,15 +52,17 @@ const InventoryList = React.forwardRef((props, ref) => {
                   <p className="capitalize">{item.item.name}</p>
                 </div>
               </th>
-              <td className="px-6 py-4 capitalize">
+              <td className="px-6 py-4 capitalize whitespace-nowrap">
                 <div className="flex items-center gap-3">
-                  <Image
-                    src={item.addedBy.image}
-                    width={28}
-                    height={28}
-                    alt="user-profile"
-                    className="rounded-full"
-                  />
+                  <div className="w-[28px] h-[28px]">
+                    <Image
+                      src={item.addedBy.image}
+                      width={28}
+                      height={28}
+                      alt="user-profile"
+                      className="rounded-full"
+                    />
+                  </div>
                   {item.addedBy.name}
                 </div>
               </td>

@@ -58,13 +58,12 @@ export default function Inventory() {
 
   return (
     <div className="mx-5 mt-4 w-full font-poppins">
-      {/* <ComponentToPrint ref={componentRef} /> */}
       <InventoryModal
         open={openModal}
         setOpen={setOpenModal}
         item={activeItem}
       />
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5">
         <h1 className="text-[22px] font-medium font-ibm mb-5 text-gray-600">
           Inventory
         </h1>

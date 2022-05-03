@@ -147,7 +147,7 @@ export default function CreateProductModal({ open, setOpen, products }) {
                         </label>
                         <div className="mb-3 xl:w-96">
                           <select
-                            className="form-select text-sm appearance-none block w-[60%] font-normal text-gray-700  bg-clip-padding bg-no-repeat border border-solid bg-gray-50  rounded transition ease-in-out m-0 focus:text-gray-700 focus:border-blue-600 focus:outline-none"
+                            className="form-select text-sm appearance-none block w-[100%] sm:w-[60%] font-normal text-gray-700 bg-clip-padding bg-no-repeat border border-solid bg-gray-50 rounded transition ease-in-out m-0 focus:text-gray-700 focus:border-blue-600 focus:outline-none"
                             aria-label="Select a unit"
                             value={unit}
                             onChange={(e) => setUnit(e.target.value)}

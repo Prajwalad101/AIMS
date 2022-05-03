@@ -34,21 +34,18 @@ function Products() {
 
   return (
     <div className="font-poppins mx-5 mt-4 w-full">
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between">
         {products.length !== 0 && (
           <h1 className="text-[22px] font-medium font-ibm mb-5 text-gray-600">
             Available Products
           </h1>
         )}
-
-        <hr />
         <button
-          className="relative inline-flex items-center justify-center p-0.5 mr-2 mb-7 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br bg-blue-600 hover:bg-blue-500 hover:shadow-md transition-all focus:ring-4 focus:outline-none focus:ring-blue-300"
+          type="button"
+          className="text-white w-[150px] font-normal bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-5 focus:outline-none sm:mb-2"
           onClick={() => setOpenModal(true)}
         >
-          <span className="relative px-3 py-2 transition-all ease-in duration-75 rounded-md hidden sm:inline">
-            Create Product
-          </span>
+          Create Product
         </button>
       </div>
       <ProductsList
