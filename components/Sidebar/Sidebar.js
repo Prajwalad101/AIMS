@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 
 import { farmerSidebarData, adminSidebarData } from "./Sidebar-data";
 import UserDropdown from "../UserDropdown";
+import { AiOutlineClose } from "react-icons/ai";
 
-function Sidebar({ user }) {
-  console.log("User1", user);
+function Sidebar({ user, isOpen, setIsOpen }) {
   const router = useRouter();
   const url = router.pathname;
 
@@ -35,13 +35,22 @@ function Sidebar({ user }) {
   };
 
   return (
-    <div className="w-64 fixed" aria-label="Sidebar">
+    <div
+      className={`w-64 fixed lg:left-0 transition-all z-50 ${
+        !isOpen ? "-left-[300px]" : "left-0"
+      }`}
+    >
       <div className="overflow-y-auto py-4 px-3 bg-gray-50 dark:bg-gray-800 h-[100vh] ">
-        <a href="https://flowbite.com" className="flex pl-2.5 mb-5">
+        <div className="flex pl-2.5 mb-5 items-center justify-between">
           <span className="self-center text-lg font-poppins font-semibold whitespace-nowrap text-white tracking-wider">
             AIMS
           </span>
-        </a>
+          <AiOutlineClose
+            size={20}
+            className="text-white lg:hidden hover:cursor-pointer"
+            onClick={() => setIsOpen(false)}
+          />
+        </div>
         <ul className="space-y-3">
           {sidebarData.map((item) => (
             <li
@@ -49,7 +58,10 @@ function Sidebar({ user }) {
               className={`hover:cursor-pointer hover:bg-gray-700 rounded-sm text-white ${
                 selectedOption === item.title ? "bg-gray-700" : ""
               }`}
-              onClick={() => linkHandler(item)}
+              onClick={() => {
+                linkHandler(item);
+                setIsOpen(false);
+              }}
             >
               <div className="flex items-center pl-3 ">
                 {item.icon}

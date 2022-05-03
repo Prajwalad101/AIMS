@@ -4,7 +4,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useReactToPrint } from "react-to-print";
 
 // functions
-import { checkPlural, getFormattedDate } from "../../utils/utility";
 import ModalDescription from "./ModalDescription";
 
 export default function InventoryModal({ open, setOpen, item }) {
