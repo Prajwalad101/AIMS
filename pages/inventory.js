@@ -8,6 +8,7 @@ import InventoryList from "../components/Inventory/InventoryList";
 import useItems from "../hooks/items/useItems";
 import InventoryModal from "../components/Inventory/InventoryModal";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Head from "next/head";
 
 export default function Inventory() {
   const [openModal, setOpenModal] = useState(false);
@@ -59,6 +60,9 @@ export default function Inventory() {
 
   return (
     <div className="mx-5 mt-4 w-full font-poppins">
+      <Head>
+        <title>Inventory</title>
+      </Head>
       <InventoryModal
         open={openModal}
         setOpen={setOpenModal}

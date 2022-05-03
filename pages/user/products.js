@@ -12,6 +12,7 @@ import DeleteItemModal from "../../components/ProductsData/DeleteItemModal";
 import useUserItems from "../../hooks/items/useUserItems";
 import useUser from "../../hooks/users/useUser";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Head from "next/head";
 
 function Products() {
   const { data: session, status } = useSession();
@@ -69,6 +70,9 @@ function Products() {
 
   return (
     <div className="w-full mx-5 mt-5 font-poppins">
+      <Head>
+        <title>Products</title>
+      </Head>
       <ToastContainer
         autoClose={2000}
         pauseOnFocusLoss={false}

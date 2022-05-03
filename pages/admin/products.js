@@ -6,6 +6,7 @@ import DeleteProductModal from "../../components/Products/DeleteProductModal";
 import ProductsList from "../../components/Products/ProductsList";
 import UpdateProductModal from "../../components/Products/UpdateProductModal";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Head from "next/head";
 
 function Products() {
   const [openModal, setOpenModal] = useState(false);
@@ -35,6 +36,9 @@ function Products() {
 
   return (
     <div className="font-poppins mx-5 mt-4 w-full">
+      <Head>
+        <title>Products</title>
+      </Head>
       <div className="flex flex-col sm:flex-row sm:items-start justify-between">
         {products.length !== 0 && (
           <h1 className="text-[22px] font-medium font-ibm mb-5 text-gray-600">

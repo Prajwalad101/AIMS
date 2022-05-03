@@ -8,6 +8,7 @@ import useUser from "../../hooks/users/useUser";
 import { useSession } from "next-auth/react";
 import useItems from "../../hooks/items/useItems";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Head from "next/head";
 
 function Dashboard() {
   const { data: userSession, status } = useSession();
@@ -37,6 +38,9 @@ function Dashboard() {
 
   return (
     <div className="w-full mx-5 mt-5">
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <h1 className="font-ibm text-[25px] font-medium text-gray-700">
         Welcome, {userName}
       </h1>
@@ -45,13 +49,6 @@ function Dashboard() {
         {selectedChart === "crops" && <CropsChart items={items} />}
         {selectedChart === "users" && <UsersChart />}
         {selectedChart === "price" && <PriceChart />}
-
-        {/* {selectedChart === "crops-info" && (
-          <div className="flex">
-            <CropDetailChart />
-            <CropDetailChart />
-          </div>
-        )} */}
       </div>
     </div>
   );

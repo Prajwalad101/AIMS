@@ -13,6 +13,7 @@ import { applicationSubmitToastNotify } from "../utils/toastFunc";
 import UserInfo from "../components/UserProfile/UserInfo";
 import PendingApplication from "../components/UserProfile/PendingApplication";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Head from "next/head";
 
 export default function PersonalInfo() {
   const { data: userSession } = useSession();
@@ -101,6 +102,9 @@ export default function PersonalInfo() {
         pauseOnFocusLoss={false}
         bodyClassName="font-poppins text-sm"
       />
+      <Head>
+        <title>Personal Info</title>
+      </Head>
       <div className="font-poppins mx-5 mt-4">
         <div className="flex flex-col">
           <div className="mb-5">

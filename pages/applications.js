@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -32,6 +33,9 @@ function Applications() {
   if (users.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center mx-auto mt-16">
+        <Head>
+          <title>Applications</title>
+        </Head>
         <Image src={nodata} alt="no-records" width={450} height={400} />
         <h1 className="text-2xl font-medium font-ibm mb-2">
           No Applications found!
@@ -42,6 +46,9 @@ function Applications() {
 
   return (
     <div className="font-poppins flex grow mx-5 flex-col w-full">
+      <Head>
+        <title>Applications</title>
+      </Head>
       <UserModal open={open} setOpen={setOpen} user={selectedUser} />
       <h1 className="text-2xl font-ibm font-medium py-3 pl-2 mb-2 text-gray-700">
         Applicants

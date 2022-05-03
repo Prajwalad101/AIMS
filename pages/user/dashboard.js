@@ -12,6 +12,7 @@ import FarmerPriceChart from "../../components/Charts/FarmerPriceChart";
 import Card from "../../components/Dashboard/CropInfoCard";
 import SelectChartTab from "../../components/Dashboard/SelectChartTab";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Head from "next/head";
 
 function Dashboard() {
   const { data: userSession } = useSession();
@@ -46,6 +47,9 @@ function Dashboard() {
   const filteredItems = getItemsByMonth(items);
   return (
     <div className="w-full mt-5 mx-5">
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <h1 className="font-ibm text-[25px] font-medium text-gray-700 mb-5">
         Welcome, {userName}
       </h1>

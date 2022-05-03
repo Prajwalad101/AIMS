@@ -1,4 +1,5 @@
 import { getProviders, signIn } from "next-auth/react";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FaFacebookF } from "react-icons/fa";
@@ -11,6 +12,9 @@ export default function SignIn({ providers }) {
 
   return (
     <div className="mx-5 sm:mx-auto text-center mt-14 border-[1.5px] px-5 sm:w-[60%] rounded-lg shadow-md">
+      <Head>
+        <title>Log in</title>
+      </Head>
       <p className="font-ibm text-3xl font-medium mb-3 mt-10">
         Welcome to AIMS
       </p>
