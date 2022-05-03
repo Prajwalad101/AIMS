@@ -3,7 +3,7 @@ import AppError from "../../../lib/appError";
 import dbConnect from "../../../lib/dbConnect";
 
 // models
-import Admin from "../../../models/AdminModel";
+import Admin from "../../../models/adminModel";
 
 // middleware
 import catchAsync from "../../../middlewares/catchAsync";
