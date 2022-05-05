@@ -1,16 +1,16 @@
-import NextAuth from "next-auth";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import { ObjectId } from "mongodb";
-import clientPromise from "../../../lib/mongodb";
+import NextAuth from 'next-auth';
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
+import { ObjectId } from 'mongodb';
+import clientPromise from '../../../lib/mongodb';
 
 // providers
-import GoogleProvider from "next-auth/providers/google";
-import FacebookProvider from "next-auth/providers/facebook";
+import GoogleProvider from 'next-auth/providers/google';
+import FacebookProvider from 'next-auth/providers/facebook';
 
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   providers: [
     GoogleProvider({
@@ -23,7 +23,7 @@ export default NextAuth({
     }),
   ],
   theme: {
-    colorScheme: "light",
+    colorScheme: 'light',
   },
   callbacks: {
     async session({ session, token }) {
@@ -35,18 +35,18 @@ export default NextAuth({
     async signIn(message) {
       if (message.isNewUser) {
         const client = await clientPromise;
-        const usersCollection = client.db().collection("users");
+        const usersCollection = client.db().collection('users');
 
         await usersCollection.updateOne(
-          { _id: ObjectId(token.sub) },
+          { _id: ObjectId(message.user.id) },
           {
-            $set: { isVerified: "not-verified" },
+            $set: { isVerified: 'not-verified' },
           }
         );
       }
     },
   },
   pages: {
-    signIn: "/auth/signin",
+    signIn: '/auth/signin',
   },
 });
