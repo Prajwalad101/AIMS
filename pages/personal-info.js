@@ -1,19 +1,19 @@
 // hooks
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import useValidateUser from "../hooks/users/useValidateUser";
-import useUser from "../hooks/users/useUser";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import useValidateUser from '../hooks/users/useValidateUser';
+import useUser from '../hooks/users/useUser';
 
-import { getDistricts } from "../utils/formData";
-import { useSession } from "next-auth/react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { getDistricts } from '../utils/formData';
+import { useSession } from 'next-auth/react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { applicationSubmitToastNotify } from "../utils/toastFunc";
-import UserInfo from "../components/UserProfile/UserInfo";
-import PendingApplication from "../components/UserProfile/PendingApplication";
-import LoadingSpinner from "../components/LoadingSpinner";
-import Head from "next/head";
+import { applicationSubmitToastNotify } from '../utils/toastFunc';
+import UserInfo from '../components/UserProfile/UserInfo';
+import PendingApplication from '../components/UserProfile/PendingApplication';
+import LoadingSpinner from '../components/LoadingSpinner';
+import Head from 'next/head';
 
 export default function PersonalInfo() {
   const { data: userSession } = useSession();
@@ -25,12 +25,12 @@ export default function PersonalInfo() {
   const { isLoading, isError, error, data } = useUser(id);
   const verifyStatus = data?.data.isVerified;
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [familyMembers, setFamilyMembers] = useState("");
-  const [municipality, setMunicipality] = useState("");
-  const [provinceNo, setProvinceNo] = useState("1");
-  const [tole, setTole] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [familyMembers, setFamilyMembers] = useState('');
+  const [municipality, setMunicipality] = useState('');
+  const [provinceNo, setProvinceNo] = useState('1');
+  const [tole, setTole] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const districts = getDistricts(provinceNo);
@@ -45,7 +45,7 @@ export default function PersonalInfo() {
   const mutation = useValidateUser(id);
 
   useEffect(() => {
-    verifyStatus !== "not-verified"
+    verifyStatus !== 'not-verified'
       ? setIsButtonDisabled(true)
       : setIsButtonDisabled(false);
   }, [verifyStatus]);
@@ -67,7 +67,7 @@ export default function PersonalInfo() {
       municipality,
       provinceNo,
       tole,
-      isVerified: "pending",
+      isVerified: 'pending',
     };
 
     mutation.mutate(
@@ -87,12 +87,26 @@ export default function PersonalInfo() {
     return <div>An unexpected error occurred: {error}</div>;
   }
 
-  if (verifyStatus === "pending") {
-    return <PendingApplication />;
+  if (verifyStatus === 'pending') {
+    return (
+      <>
+        <Head>
+          <title>Personal Info</title>
+        </Head>
+        <PendingApplication />
+      </>
+    );
   }
 
-  if (verifyStatus === "verified") {
-    return <UserInfo user={data?.data} />;
+  if (verifyStatus === 'verified') {
+    return (
+      <>
+        <Head>
+          <title>Personal Info</title>
+        </Head>
+        <UserInfo user={data?.data} />;
+      </>
+    );
   }
 
   return (
@@ -235,7 +249,7 @@ export default function PersonalInfo() {
                   <button
                     type="submit"
                     className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-                      isButtonDisabled && "cursor-not-allowed"
+                      isButtonDisabled && 'cursor-not-allowed'
                     }`}
                     disabled={isButtonDisabled}
                   >
