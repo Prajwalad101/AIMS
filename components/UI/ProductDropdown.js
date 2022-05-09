@@ -1,12 +1,12 @@
-import { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
+import { Fragment } from 'react';
+import { Menu, Transition } from '@headlessui/react';
 
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { RiDeleteBin4Line } from "react-icons/ri";
-import { AiOutlineEdit } from "react-icons/ai";
+import { BsThreeDotsVertical } from 'react-icons/bs';
+import { RiDeleteBin4Line } from 'react-icons/ri';
+import { AiOutlineEdit } from 'react-icons/ai';
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function ProductDropdown({
@@ -36,7 +36,7 @@ export default function ProductDropdown({
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ">
           <div className="py-1">
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <div
                   href="#"
@@ -50,14 +50,14 @@ export default function ProductDropdown({
                   Edit
                 </div>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item>
               {({ active }) => (
                 <div
                   href="#"
                   className={classNames(
-                    active ? "bg-gray-100 text-red-800" : "text-gray-700",
-                    "pl-3 py-2 text-sm flex items-center gap-7 hover:cursor-pointer"
+                    active ? 'bg-gray-100 text-red-800' : 'text-gray-700',
+                    'pl-3 py-2 text-sm flex items-center gap-7 hover:cursor-pointer'
                   )}
                   onClick={() => delModalHandler(product)}
                 >
