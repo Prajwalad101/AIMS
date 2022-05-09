@@ -1,8 +1,8 @@
-import useValidateUser from "../hooks/users/useValidateUser";
-import { successToastNotify, errorToastNotify } from "../utils/toastFunc.js";
+import useValidateUser from '../hooks/users/useValidateUser';
+import { successToastNotify, errorToastNotify } from '../utils/toastFunc.js';
 
-import { Fragment, useRef } from "react";
-import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useRef } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 // import { ExclamationIcon } from "@heroicons/react/outline";
 export default function UserModal({ open, setOpen, user }) {
   const cancelButtonRef = useRef(null);
@@ -10,10 +10,10 @@ export default function UserModal({ open, setOpen, user }) {
 
   const verifyUser = () => {
     mutation.mutate(
-      { userInfo: { isVerified: "verified" }, id: user._id },
+      { userInfo: { isVerified: 'verified' }, id: user._id },
       {
         onSuccess: () => {
-          successToastNotify("Successfully verified user");
+          successToastNotify('Successfully verified user');
         },
       }
     );
@@ -24,14 +24,14 @@ export default function UserModal({ open, setOpen, user }) {
     mutation.mutate(
       {
         userInfo: {
-          isVerified: "blocked",
+          isVerified: 'blocked',
         },
         id: user._id,
       },
 
       {
         onSuccess: () => {
-          errorToastNotify("Successfully blocked user");
+          errorToastNotify('Successfully blocked user');
         },
       }
     );
@@ -143,7 +143,7 @@ export default function UserModal({ open, setOpen, user }) {
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={() => setOpen(false)}
                   ref={cancelButtonRef}
                 >
