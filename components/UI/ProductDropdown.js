@@ -36,13 +36,13 @@ export default function ProductDropdown({
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ">
           <div className="py-1">
-            {/* <Menu.Item>
+            <Menu.Item>
               {({ active }) => (
                 <div
                   href="#"
                   className={classNames(
-                    active ? "bg-gray-100 text-blue-800" : "text-gray-700",
-                    "pl-3 py-2 text-sm flex items-center gap-6 hover:cursor-pointer"
+                    active ? 'bg-gray-100 text-blue-800' : 'text-gray-700',
+                    'pl-3 py-2 text-sm flex items-center gap-6 hover:cursor-pointer'
                   )}
                   onClick={() => updateModalHandler(product)}
                 >
@@ -50,7 +50,7 @@ export default function ProductDropdown({
                   Edit
                 </div>
               )}
-            </Menu.Item> */}
+            </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <div
